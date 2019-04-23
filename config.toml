@@ -1,8 +1,8 @@
-baseURL = "/"
+baseURL = "/Users/benwoodard/Documents/benrwoodard_com/public/"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "Ben R Woodard"
-theme = "cupper-hugo-theme"
+theme = "cupper-hugo-theme-master"
 googleAnalytics = ""
 disqusShortname = ""
 enableGitInfo = true
