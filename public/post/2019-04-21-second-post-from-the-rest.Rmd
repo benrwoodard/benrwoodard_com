@@ -14,7 +14,11 @@ tags:
 ---
 # This is the second of the many posts.
 `r 2*200` is the number of posts I have set for a goal this year.  I have only 150 days left and therefore I need to publish `r 400/150` posts per day.
-
+```{r}
+library(tidyverse)
+mtcars %>%
+  ggplot(aes(mpg, hp,color=hp)) + geom_point()
+```
 Thanks
 
 *brought to you by me. :)*
