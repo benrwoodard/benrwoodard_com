@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>launch on Ben R Woodard</title>
+    <link>/tags/launch/</link>
+    <description>Recent content in launch on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/launch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Second Post from the rest</title>
+      <link>/2019-04-21-second-post-from-the-rest/</link>
+      <pubDate>Sun, 21 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019-04-21-second-post-from-the-rest/</guid>
+      <description> This is the second of the many posts. 400 is the number of posts I have set for a goal this year. I have only 150 days left and therefore I need to publish 2.6666667 posts per day.
+Thanks
+brought to you by me. :)
+ </description>
+    </item>
+    
+  </channel>
+</rss>
