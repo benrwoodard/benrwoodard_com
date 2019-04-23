@@ -1,10 +1,10 @@
-baseURL = "/"
+baseURL = "https://example.com"
 languageCode = "en-us"
 defaultContentLanguage = "en"
-title = "Ben R Woodard"
+title = "Cupper"
 theme = "cupper-hugo-theme"
-googleAnalytics = ""
-disqusShortname = ""
+googleAnalytics = "UA-123456789-1"
+disqusShortname = "yourdiscussshortname"
 enableGitInfo = true
 
 [taxonomies]
@@ -21,7 +21,7 @@ enableGitInfo = true
   homeMetaContent = "An accessibility-friendly Hugo theme, ported from the original Cupper project."
   footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme). Deployed to [Netlify](https://www.netlify.com/)."
   # For more date formats see https://gohugo.io/functions/format/
-  dateFormat = "2006-01-20"
+  dateFormat = "Jan 2, 2006"
   codePenUser = "someUser"
   katex = true
 
