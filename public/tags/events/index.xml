@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Events on Ben R Woodard</title>
+    <link>/tags/events/</link>
+    <description>Recent content in Events on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Aug 2010 15:13:49 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/events/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>
+				It&#39;s My Dad&#39;s 59th		</title>
+      <link>/2010-08-18-its-my-dads-58th/</link>
+      <pubDate>Wed, 18 Aug 2010 15:13:49 +0000</pubDate>
+      
+      <guid>/2010-08-18-its-my-dads-58th/</guid>
+      <description>Happy Birthday Dad!  Today my dad turns 59! My dad is the type of man that ran away from home because of the &amp;ldquo;restricting&amp;rdquo; rules of my grandparents and joined the Marines. It may sound like it was a dumb reason but, a he would tell you, it was the best decision of his life. His experience in the Marines proved to him the type of man he could become.</description>
+    </item>
+    
+  </channel>
+</rss>

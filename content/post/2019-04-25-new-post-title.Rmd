@@ -1,0 +1,27 @@
+---
+title: New post Title
+author: Ben Woodard
+date: '2019-04-25'
+slug: new-post-title
+categories:
+  - Book
+tags:
+  - accomplishments
+---
+
+#This is the beginning
+
+1. 
+2.
+3.
+
+
+## This is the h2 tag
+
+```{r}
+library(tidyverse)
+data(mtcars)
+
+mtcars %>%
+  ggplot(aes(mpg,wt)) + geom_point()
+```

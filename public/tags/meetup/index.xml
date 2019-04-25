@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>meetup on Ben R Woodard</title>
+    <link>/tags/meetup/</link>
+    <description>Recent content in meetup on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 17 Feb 2011 12:41:20 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/meetup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>
+				Friday Is The First Pensacola 8BIT Meetup		</title>
+      <link>/2011-02-17-friday-i-the-first-pensacola-8bit-meetup/</link>
+      <pubDate>Thu, 17 Feb 2011 12:41:20 +0000</pubDate>
+      
+      <guid>/2011-02-17-friday-i-the-first-pensacola-8bit-meetup/</guid>
+      <description>We are only one day away from [Pensacola&#39;s first 8BIT meetup](http://www.meetup.com/8bitnetwork/events/16494056/). I wanted to encourage anyone in and around Pensacola to join us for some great coffee and web ministry talk.  We are going to meet at the Drowsy Poet coffee shop on Brent Lane next to PCA at about 7:45. We have no set times but I&amp;rsquo;m going to have to leave at 9 for a doctors appointment.</description>
+    </item>
+    
+  </channel>
+</rss>
