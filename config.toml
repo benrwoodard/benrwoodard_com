@@ -3,7 +3,7 @@ languageCode = "en-us"
 defaultContentLanguage = "en"
 title = "Ben R Woodard"
 theme = "cupper-hugo-theme-master"
-googleAnalytics = ""
+googleAnalytics = "UA-12086340-1"
 disqusShortname = ""
 enableGitInfo = true
 
@@ -17,9 +17,9 @@ enableGitInfo = true
   quality = 99
 
 [params]
-  description = "An accessibility-friendly Hugo theme, ported from the [original Cupper](https://github.com/ThePacielloGroup/cupper) project."
-  homeMetaContent = "An accessibility-friendly Hugo theme, ported from the original Cupper project."
-  footer = "Made with [Hugo](https://gohugo.io/). Themed by [Cupper](https://github.com/zwbetz-gh/cupper-hugo-theme). Deployed to [Netlify](https://www.netlify.com/)."
+  description = "Doing the hard things that others say is impossible."
+  homeMetaContent = "Analytics, Family and Farm"
+  footer = "Made with RStudio in Anna, TX."
   # For more date formats see https://gohugo.io/functions/format/
   dateFormat = "2006-01-20"
   codePenUser = "someUser"
