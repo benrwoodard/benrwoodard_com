@@ -4,7 +4,7 @@ defaultContentLanguage = "en"
 title = "Ben R Woodard"
 theme = "cupper-hugo-theme-master"
 googleAnalytics = "UA-12086340-1"
-disqusShortname = ""
+disqusShortname = "benrwoodard-com"
 enableGitInfo = true
 
 [taxonomies]
