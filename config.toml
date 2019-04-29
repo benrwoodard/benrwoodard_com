@@ -17,11 +17,11 @@ enableGitInfo = true
   quality = 99
 
 [params]
-  description = "Doing the hard things that others won't do."
+  description = "Huspand, Father, Analytics"
   homeMetaContent = "Analytics, Family and Farm"
   footer = "Made with RStudio in Anna, TX."
   # For more date formats see https://gohugo.io/functions/format/
-  dateFormat = "2006-01-20"
+  dateFormat = "2006-01-01"
   codePenUser = "someUser"
   katex = true
 
