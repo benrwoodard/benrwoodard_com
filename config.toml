@@ -17,7 +17,7 @@ enableGitInfo = true
   quality = 99
 
 [params]
-  description = "Doing the hard things that others say is impossible."
+  description = "Doing the hard things that others won't do."
   homeMetaContent = "Analytics, Family and Farm"
   footer = "Made with RStudio in Anna, TX."
   # For more date formats see https://gohugo.io/functions/format/
