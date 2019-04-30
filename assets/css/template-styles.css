@@ -72,7 +72,8 @@ figure p img {
 [data-expands]:focus svg,
 .patterns a:focus .text,
 [for="themer"] :focus + [aria-hidden] {
-    outline: 4px solid #999;
+    outline: 0px solid #999;
+    color: darkorange;
 }
 a {
   outline-offset: 2px;
