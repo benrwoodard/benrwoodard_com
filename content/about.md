@@ -37,10 +37,10 @@ Here is a little more about where I have spent my energy and passion for the las
 ***
 *Company:* Freelance<br />
 *Location:* Remote<br />
-*Timeframe:* 5/2010 - present<br />
+*Timeframe:* 5/2010 - Present<br />
 *Title:* Digital Marketing Analyst<br />
 
-Description:  
+*Description:*  
 +Digital Analytics expert consultant for North Point Community Church in Atlanta, GA
 +Advanced system integration necessary for effective marketing analysis by assuring quality data
 +Ran extensive technical SEO site audits that resulted in changes which increased organic site traffic by 33% in less than 6 months. 
@@ -51,10 +51,11 @@ Description:
 
 ***
 *Company:* Burgess Road Baptist Church
+*Location:* Pensacola, FL
 *Timeframe:* 2006-2010  
 *Title:* Youth/Associate Pastor  
 
 *Description:*  
 +Designed an effective youth program and helped lead a team of interns.
 +Developed and launched the online ministries of the church, service live streaming.
-+Learned HTML/CSS and Wordpress to relaunch the ministry website which became the primary marketing avenue for new members.
++Learned HTML/CSS, Wordpress, and SEO to relaunch the ministry website which became the primary marketing avenue for new members.
