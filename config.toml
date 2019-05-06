@@ -43,6 +43,6 @@ enableGitInfo = true
     url = "/about/"
     weight = 4
   [[menu.nav]]
-    name = "RSS"
-    url = "/index.xml"
+    name = "Flowchart"
+    url = "/flowchart/"
     weight = 5
