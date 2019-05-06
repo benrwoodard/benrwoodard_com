@@ -3,8 +3,9 @@ title: "About myself"
 date: '2019-04-22'
 output: html_document
 ---
-Here is a little more about where I have spent my energy and passion for the last ~15 years.  I've had the privilege to work for many great companys, nonprofit and forprofit, in my career. The diversity of industries has given me the ability to adapt to learn new business models quickly and contribute to business 
+Here is a little more about where I have spent my energy and passion for the last ~15 years.  I've had the privilege to work for many great companys, nonprofit and forprofit, in my career. The diversity of industries has given me the ability to adapt to learn new business models quickly and contribute to business impact.
 
+***
 *Company:* Mary Kay Inc.  
 *Location:* Addison, TX   
 *Timeframe:* 8/21/2017- Present  
@@ -37,7 +38,7 @@ Here is a little more about where I have spent my energy and passion for the las
 ***
 *Company:* Freelance<br />
 *Location:* Remote<br />
-*Timeframe:* 5/2010 - Present<br />
+*Timeframe:* 2010 - Present<br />
 *Title:* Digital Marketing Analyst<br />
 
 *Description:*  
@@ -50,10 +51,10 @@ Here is a little more about where I have spent my energy and passion for the las
 +Paid Digital Marketing Contractor for over 60 startups, nonprofit organizations, and for-profit companies since 2007. 
 
 ***
-*Company:* Burgess Road Baptist Church
-*Location:* Pensacola, FL
-*Timeframe:* 2006-2010  
-*Title:* Youth/Associate Pastor  
+*Company:* Burgess Road Baptist Church</br>
+*Location:* Pensacola, FL</br>
+*Timeframe:* 2006-2010</br>
+*Title:* Youth/Associate Pastor</br>
 
 *Description:*  
 +Designed an effective youth program and helped lead a team of interns.
