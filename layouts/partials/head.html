@@ -25,7 +25,8 @@
   {{ $templateStyles := resources.Get "css/template-styles.css" }}
   {{ $styles := $templateStyles | resources.ExecuteAsTemplate "css/styles.css" . }}
   <link rel="stylesheet" type="text/css" href="{{ $styles.Permalink }}">
-
+  <script src="https://raw.githubusercontent.com/DmitryBaranovskiy/raphael/master/raphael.min.js"> </script>
+  <script src="http://flowchart.js.org/flowchart-latest.js"> </script>
   <style id="inverter" media="none">
     html { filter: invert(100%) }
     * { background-color: inherit }
