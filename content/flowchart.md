@@ -1,6 +1,5 @@
 ---
 title: "Flowchart"
-output: html_document
 date: '2019-05-06'
 tags:
 - opportunities
