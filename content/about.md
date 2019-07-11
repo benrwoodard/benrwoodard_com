@@ -3,12 +3,21 @@ title: "About myself"
 date: '2019-04-22'
 output: html_document
 ---
-Here is a little more about where I have spent my energy and passion for the last ~15 years.  I've had the privilege to work for many great companys, nonprofit and forprofit, in my career. The diversity of industries has given me the ability to adapt to learn new business models quickly and contribute to business impact.
+Here is a little more about where I have spent my energy and passion since 2006.  I've had the privilege to work for many great companys, non-profit and for-profit, in my career. The diversity of industries has given me the ability to adapt to learn new business models quickly and contribute to business impact.
+
+***
+*Company:* Search Discovery, Inc.  
+*Location:* Atlanta, GA   
+*Timeframe:* 6/2019 - Present  
+*Title:* Analytics Manager
+
+*Description:*  
+  +Just getting started.  I'll have to fill this in later. :)
 
 ***
 *Company:* Mary Kay Inc.  
 *Location:* Addison, TX   
-*Timeframe:* 8/21/2017- Present  
+*Timeframe:* 8/2017- 6/2019  
 *Title:* Assistant Manager Web Analytics, US Market
 
 *Description:*  
@@ -24,7 +33,7 @@ Here is a little more about where I have spent my energy and passion for the las
 ***  
 *Company:* **Human Coalition**  
 *Location:* Plano, TX   
-*Timeframe:* 5/1/2013- 6/30/2017  
+*Timeframe:* 5/2013- 6/2017  
 *Title:* Digital Marketing Analyst
 
 *Description:*  
