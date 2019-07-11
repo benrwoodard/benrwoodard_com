@@ -1,5 +1,6 @@
 ---
 title: "Flowchart"
+ouput: html_document
 date: '2019-05-06'
 tags:
 - opportunities
@@ -8,7 +9,6 @@ tags:
 
 ```{r, setup,echo=FALSE,warning=FALSE}
 library(DiagrammeR)
-library(fontawesome)
 
 data(mtcars)
 mermaid("
@@ -21,7 +21,4 @@ graph TB
         F(Communicate the what <br>to do with it.)
         A-- Start -->B; B--Something<br> Here Now ---C; C---D; D-->E; D-->F
 ")
-```
-```{r additional }
-fa("r-project", fill = "steelblue")
 ```
