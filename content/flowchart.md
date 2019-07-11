@@ -22,6 +22,6 @@ graph TB
         A-- Start -->B; B--Something<br> Here Now ---C; C---D; D-->E; D-->F
 ")
 ```
-```{r additional, setup,echo=FALSE,warning=FALSE}
+```{r additional }
 fa("r-project", fill = "steelblue")
 ```
