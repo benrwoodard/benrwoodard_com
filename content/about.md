@@ -12,7 +12,7 @@ Here is a little more about where I have spent my energy and passion since 2006.
 *Title:* Analytics Manager
 
 *Description:*  
-  +Just getting started.  I'll have to fill this in later. :)
+  +Just getting started.  I'll have to fill this in later. :)  
 
 ***
 *Company:* Mary Kay Inc.  
@@ -23,12 +23,12 @@ Here is a little more about where I have spent my energy and passion since 2006.
 *Description:*  
   +Developing an analytics vision and strategy for the US market  
   +Initiated several POC engagments with critical analytics tracking tools which is playing a major role in the digital transformation  
-  +Diagnosing data quality issues and prioritizing IT resources while proposing effective solutions  
+  +Diagnosing data quality issues and prioritizing IT resources while proposing effective solutions   
   +Adobe Analytics, Google web App Analytics, Google for Firebase Analytics implementation and development  
-  +Developing a A/B split test process across the different channels  
+  +Developing a A/B split test process across the different channels.  
   +Generating adhoc dashboards, campaign and project goal defining, advanced exploratory data analysis reports and presentations for mulitple cross deparmental teams  
-  +Analytics evangelist through speaking opportunities within market and global presentations
-  +Worked closely with the data science team on projects regarding data acquisition, forecasts and results
+  +Analytics evangelist through speaking opportunities within market and global presentations  
+  +Worked closely with the data science team on projects regarding data acquisition, forecasts and results  
 
 ***  
 *Company:* **Human Coalition**  
@@ -39,9 +39,9 @@ Here is a little more about where I have spent my energy and passion since 2006.
 *Description:*  
 +Oversaw launch and implementation of the email marketing platforms.  
 +Developed and maintained email house file segmentation increasing open rates by 17%.  
-+Increased revenue by 60% on a campaign through A/B split testing hypotheses and analyzing the data to determine statistical significance.
-+Setup, installed and managed Google Tag Manager saving time and development costs for the org
-+Developed a strong analytics architecture by standardizing tag design assuring data quality resulting in better insights and action steps for the marketing team.
++Increased revenue by 60% on a campaign through A/B split testing hypotheses and analyzing the data to determine statistical significance.  
++Setup, installed and managed Google Tag Manager saving time and development costs for the org  
++Developed a strong analytics architecture by standardizing tag design assuring data quality resulting in better insights and action steps for the marketing team.  
 +Implemented advanced Google Analytics eCommerce integration with 4 different revenue generating platforms. 
 
 ***
@@ -51,13 +51,13 @@ Here is a little more about where I have spent my energy and passion since 2006.
 *Title:* Digital Marketing Analyst<br />
 
 *Description:*  
-+Digital Analytics expert consultant for North Point Community Church in Atlanta, GA
-+Advanced system integration necessary for effective marketing analysis by assuring quality data
-+Ran extensive technical SEO site audits that resulted in changes which increased organic site traffic by 33% in less than 6 months. 
-+Managed up to 20 client accounts at a time, hit deadlines and increased the digital footprint through digital marketing tactics, analysis and optimization.
-+Developed and managed a client's online membership site resulting in an increase of over 300% in members in a 14 month time period.
-+Lead SEO for a 2,000+ product eCommerce website increasing revenue through generating more organic traffic by utilizing technical optimization techniques and front-end site edits. (Volusion and NetSuite)
-+Paid Digital Marketing Contractor for over 60 startups, nonprofit organizations, and for-profit companies since 2007. 
++Digital Analytics expert consultant for North Point Community Church in Atlanta, GA  
++Advanced system integration necessary for effective marketing analysis by assuring quality data  
++Ran extensive technical SEO site audits that resulted in changes which increased organic site traffic by 33% in less than 6 months.  
++Managed up to 20 client accounts at a time, hit deadlines and increased the digital footprint through digital marketing tactics, analysis and optimization.  
++Developed and managed a client's online membership site resulting in an increase of over 300% in members in a 14 month time period.  
++Lead SEO for a 2,000+ product eCommerce website increasing revenue through generating more organic traffic by utilizing technical optimization techniques and front-end site edits. (Volusion and NetSuite)  
++Paid Digital Marketing Contractor for over 60 startups, nonprofit organizations, and for-profit companies since 2007.  
 
 ***
 *Company:* Burgess Road Baptist Church</br>
@@ -66,6 +66,6 @@ Here is a little more about where I have spent my energy and passion since 2006.
 *Title:* Youth/Associate Pastor</br>
 
 *Description:*  
-+Designed an effective youth program and helped lead a team of interns.
-+Developed and launched the online ministries of the church, service live streaming.
-+Learned HTML/CSS, Wordpress, and SEO to relaunch the ministry website which became the primary marketing avenue for new members.
++Designed an effective youth program and helped lead a team of interns.  
++Developed and launched the online ministries of the church, service live streaming.  
++Learned HTML/CSS, Wordpress, and SEO to relaunch the ministry website which became the primary marketing avenue for new members.  
