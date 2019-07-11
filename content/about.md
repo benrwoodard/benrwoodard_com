@@ -47,7 +47,7 @@ Here is a little more about where I have spent my energy and passion since 2006.
 ***
 *Company:* Freelance<br />
 *Location:* Remote<br />
-*Timeframe:* 2010 - Present<br />
+*Timeframe:* 2010 - 6/2019<br />
 *Title:* Digital Marketing Analyst<br />
 
 *Description:*  
