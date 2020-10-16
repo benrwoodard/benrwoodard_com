@@ -26,6 +26,15 @@
   {{ $styles := $templateStyles | resources.ExecuteAsTemplate "css/styles.css" . }}
   <link rel="stylesheet" type="text/css" href="{{ $styles.Permalink }}">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://server.benrwoodard.com/gtag/js?id=G-TP3J47FZ0X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-TP3J47FZ0X');
+  </script>
   <style id="inverter" media="none">
     html { filter: invert(100%) }
     * { background-color: inherit }
