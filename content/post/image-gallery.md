@@ -3,6 +3,7 @@ authors:
 - Hugo Authors
 date: "2020-01-02"
 description: Showcase the image gallery feature.
+excerpt: This is the excerpt we are hoping to see and nothing else.
 images:
 - image-gallery.jpg
 tags:
