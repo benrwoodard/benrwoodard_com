@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>frankenstein on Ben R Woodard</title>
+    <link>/tags/frankenstein/</link>
+    <description>Recent content in frankenstein on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 28 Nov 2010 14:58:42 +0000</lastBuildDate><atom:link href="/tags/frankenstein/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>
+				It&#39;s Alive!		</title>
+      <link>/post/its-alive/</link>
+      <pubDate>Sun, 28 Nov 2010 14:58:42 +0000</pubDate>
+      
+      <guid>/post/its-alive/</guid>
+      <description>It was almost 4 weeks ago that I killed my blog. I was messing around with my live Wordpress blog when I got curious one night as to what would happen if I changed the root structure. I found out. There are several lessons I have learned over the last few weeks that I would like to try and document. The first lesson has me scratching me head a little.</description>
+    </item>
+    
+  </channel>
+</rss>

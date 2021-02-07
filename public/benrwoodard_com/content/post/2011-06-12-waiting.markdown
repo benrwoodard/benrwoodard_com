@@ -1,0 +1,19 @@
+---
+author: testing author
+comments: true
+date: 2011-06-12 14:58:16+00:00
+excerpt: "\n\t\t\t\t\t\t"
+layout: post
+link: http://benrwoodard.wpengine.com/waiting/
+slug: waiting
+title: "\n\t\t\t\tStuck In ATL On 285/20\t\t"
+wordpress_id: 963
+categories:
+- Family
+- Web
+---
+
+
+				Waiting.   
+  
+Your browser does not support the video tag		

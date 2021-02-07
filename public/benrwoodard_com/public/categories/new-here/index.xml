@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>new here on Ben R Woodard</title>
+    <link>/categories/new-here/</link>
+    <description>Recent content in new here on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 06 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/new-here/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>This is my first post</title>
+      <link>/post/2021-02-06-this-is-my-first-post/</link>
+      <pubDate>Sat, 06 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-02-06-this-is-my-first-post/</guid>
+      <description>Here&amp;rsquo;s Me r 2+3 That should say 5!
+It does? Great!</description>
+    </item>
+    
+  </channel>
+</rss>

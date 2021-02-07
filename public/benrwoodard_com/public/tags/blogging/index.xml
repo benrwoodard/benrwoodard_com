@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blogging on Ben R Woodard</title>
+    <link>/tags/blogging/</link>
+    <description>Recent content in blogging on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 29 Mar 2011 16:49:33 +0000</lastBuildDate><atom:link href="/tags/blogging/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>
+				Wordpress 3.1 Post Formats In Standard Theme 2.6		</title>
+      <link>/post/wordpress-3-1-post-formats-in-standard-theme-2-6/</link>
+      <pubDate>Tue, 29 Mar 2011 16:49:33 +0000</pubDate>
+      
+      <guid>/post/wordpress-3-1-post-formats-in-standard-theme-2-6/</guid>
+      <description>I learned a little something this weekend about a new feature that Wordpress developed to help bloggers accomplish more in the limited time that we have. It&#39;s called &#39;Post Formats&#39; and it is a really interesting approach to content development.  The Wordpress codex (information hub for Wordpress.org) says there are several options to choose from now for styling your blog posts. For instance, sometimes you need to simply show an interesting quote.</description>
+    </item>
+    
+    <item>
+      <title>
+				It&#39;s Alive!		</title>
+      <link>/post/its-alive/</link>
+      <pubDate>Sun, 28 Nov 2010 14:58:42 +0000</pubDate>
+      
+      <guid>/post/its-alive/</guid>
+      <description>It was almost 4 weeks ago that I killed my blog. I was messing around with my live Wordpress blog when I got curious one night as to what would happen if I changed the root structure. I found out. There are several lessons I have learned over the last few weeks that I would like to try and document. The first lesson has me scratching me head a little.</description>
+    </item>
+    
+  </channel>
+</rss>
