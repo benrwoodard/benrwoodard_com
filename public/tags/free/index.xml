@@ -1,27 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>free on Ben R Woodard</title>
     <link>/tags/free/</link>
     <description>Recent content in free on Ben R Woodard</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 14 Jun 2017 11:34:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/free/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en</language>
+    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
+    <lastBuildDate>Wed, 14 Jun 2017 11:34:00 +0000</lastBuildDate><atom:link href="/tags/free/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>
 				Our culture doesn&#39;t understand redemption: PROOF		</title>
-      <link>/2017-06-14-our-culture-doesnt-understand-redemption-proof/</link>
+      <link>/post/our-culture-doesnt-understand-redemption-proof/</link>
       <pubDate>Wed, 14 Jun 2017 11:34:00 +0000</pubDate>
       
-      <guid>/2017-06-14-our-culture-doesnt-understand-redemption-proof/</guid>
+      <guid>/post/our-culture-doesnt-understand-redemption-proof/</guid>
       <description>[![](http://benrwoodard.com/wp-content/uploads/2017/06/img_0379.jpg)](http://benrwoodard.com/wp-content/uploads/2017/06/img_0379.jpg)Studies have shown that about $1 billion in gift card money doesn&#39;t get redeemed every year. This is free money so why does this happen?  There are a few requirements that the redemption process has in it that may hinder redeeming gift card money.
- Value must be locked up
- A code must be used to unlock the value
- The value must be used in the market it was locked up in</description>
+  Value must be locked up
+  A code must be used to unlock the value
+  The value must be used in the market it was locked up in</description>
     </item>
     
   </channel>

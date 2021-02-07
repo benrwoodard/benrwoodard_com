@@ -1,20 +1,26 @@
 ---
-author: benrwoodard
+author: Ben R Woodard
 comments: true
 date: 2010-09-08 13:00:42+00:00
-excerpt: "\n\t\t\t\t\t\t"
+excerpt: This is my excerpt
 layout: post
-link: http://benrwoodard.wpengine.com/its-log/
+link: /its-log/
 slug: its-log
-title: "\n\t\t\t\tIt's Log!\t\t"
+title: "It's Log!"
 wordpress_id: 69
 categories:
 - Family
 ---
 
 
-				I believe Netflix is allowing us parents to bridge the generational gap like no other resource outside of the church.
-Here is one of my favorites as a kid and I was able to introduce it today to my kids via Netflix.  High five for the interwebs!<!-- more -->
+I believe Netflix is allowing us parents to bridge the generational gap like no other resource outside of the church.
 
+Here is one of my favorites as a kid and I was able to introduce it today to my kids via Netflix.  High five for the interwebs!
+
+{{< youtube -fQGPZTECYs >}}
+
+<br>
+
+---
 
 Do you think it is necessary for dads to try and bridge some of the generational gap with their kids?		

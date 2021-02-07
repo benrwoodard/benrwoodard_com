@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Standard Theme on Ben R Woodard</title>
+    <link>/categories/standard-theme/</link>
+    <description>Recent content in Standard Theme on Ben R Woodard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 30 Jun 2012 16:23:16 +0000</lastBuildDate><atom:link href="/categories/standard-theme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>
+				Hiding Elements According to Screen Size		</title>
+      <link>/post/hiding-elements-according-to-screen-size/</link>
+      <pubDate>Sat, 30 Jun 2012 16:23:16 +0000</pubDate>
+      
+      <guid>/post/hiding-elements-according-to-screen-size/</guid>
+      <description> [youtube http://youtu.be/r1-tE40eqW8]	 </description>
+    </item>
+    
+  </channel>
+</rss>

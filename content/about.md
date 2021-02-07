@@ -1,71 +1,31 @@
 ---
-title: "About myself"
-date: '2019-04-22'
-output: html_document
+aliases:
+- about-us
+- about-hugo
+- contact
+author: Ben R Woodard
+date: "2019-02-28"
+description: Hugo, the world’s fastest framework for building websites
+title: About
 ---
-Here is a little more about where I have spent my energy and passion since 2006.  I've had the privilege to work for many great companys, non-profit and for-profit, in my career. The diversity of industries has given me the ability to adapt to learn new business models quickly and contribute to business impact.
 
-***
-*Company:* Search Discovery, Inc.  
-*Location:* Atlanta, GA   
-*Timeframe:* 6/2019 - Present  
-*Title:* Analytics Manager
+Written in Go, Hugo is an open source static site generator available under the [Apache Licence 2.0.](https://github.com/gohugoio/hugo/blob/master/LICENSE) Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
 
-*Description:*  
-  +Just getting started.  I'll have to fill this in later. :)  
+Hugo makes use of a variety of open source projects including:
 
-***
-*Company:* Mary Kay Inc.  
-*Location:* Addison, TX   
-*Timeframe:* 8/2017- 6/2019  
-*Title:* Assistant Manager Web Analytics, US Market
+* https://github.com/russross/blackfriday
+* https://github.com/alecthomas/chroma
+* https://github.com/muesli/smartcrop
+* https://github.com/spf13/cobra
+* https://github.com/spf13/viper
 
-*Description:*  
-  +Developing an analytics vision and strategy for the US market  
-  +Initiated several POC engagments with critical analytics tracking tools which is playing a major role in the digital transformation  
-  +Diagnosing data quality issues and prioritizing IT resources while proposing effective solutions   
-  +Adobe Analytics, Google web App Analytics, Google for Firebase Analytics implementation and development  
-  +Developing a A/B split test process across the different channels.  
-  +Generating adhoc dashboards, campaign and project goal defining, advanced exploratory data analysis reports and presentations for mulitple cross deparmental teams  
-  +Analytics evangelist through speaking opportunities within market and global presentations  
-  +Worked closely with the data science team on projects regarding data acquisition, forecasts and results  
+Hugo is ideal for blogs, corporate websites, creative portfolios, online magazines, single page applications or even a website with thousands of pages.
 
-***  
-*Company:* **Human Coalition**  
-*Location:* Plano, TX   
-*Timeframe:* 5/2013- 6/2017  
-*Title:* Digital Marketing Analyst
+Hugo is for people who want to hand code their own website without worrying about setting up complicated runtimes, dependencies and databases.
 
-*Description:*  
-+Oversaw launch and implementation of the email marketing platforms.  
-+Developed and maintained email house file segmentation increasing open rates by 17%.  
-+Increased revenue by 60% on a campaign through A/B split testing hypotheses and analyzing the data to determine statistical significance.  
-+Setup, installed and managed Google Tag Manager saving time and development costs for the org  
-+Developed a strong analytics architecture by standardizing tag design assuring data quality resulting in better insights and action steps for the marketing team.  
-+Implemented advanced Google Analytics eCommerce integration with 4 different revenue generating platforms. 
+Websites built with Hugo are extremelly fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.
 
-***
-*Company:* Freelance<br />
-*Location:* Remote<br />
-*Timeframe:* 2010 - 6/2019<br />
-*Title:* Digital Marketing Analyst<br />
+Learn more and contribute on [GitHub](https://github.com/gohugoio).
 
-*Description:*  
-+Digital Analytics expert consultant for North Point Community Church in Atlanta, GA  
-+Advanced system integration necessary for effective marketing analysis by assuring quality data  
-+Ran extensive technical SEO site audits that resulted in changes which increased organic site traffic by 33% in less than 6 months.  
-+Managed up to 20 client accounts at a time, hit deadlines and increased the digital footprint through digital marketing tactics, analysis and optimization.  
-+Developed and managed a client's online membership site resulting in an increase of over 300% in members in a 14 month time period.  
-+Lead SEO for a 2,000+ product eCommerce website increasing revenue through generating more organic traffic by utilizing technical optimization techniques and front-end site edits. (Volusion and NetSuite)  
-+Paid Digital Marketing Contractor for over 60 startups, nonprofit organizations, and for-profit companies since 2007.  
 
-***
-*Company:* Burgess Road Baptist Church</br>
-*Location:* Pensacola, FL</br>
-*Timeframe:* 2006-2010</br>
-*Title:* Youth/Associate Pastor</br>
 
-*Description:*  
-+Designed an effective youth program and helped lead a team of interns.  
-+Developed and launched the online ministries of the church, service live streaming.  
-+Learned HTML/CSS, Wordpress, and SEO to relaunch the ministry website which became the primary marketing avenue for new members.  
