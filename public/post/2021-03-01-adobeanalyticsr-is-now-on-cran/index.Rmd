@@ -1,0 +1,10 @@
+---
+title: adobeanalyticsr is now on CRAN
+author: Ben R Woodard
+date: '2021-03-01'
+slug: []
+categories: []
+tags: []
+images: []
+authors: benrwoodard
+---

@@ -49,12 +49,15 @@ params:
     linkedin: https://linkedin.com/in/benrwoodard
     rss: yes
     twitter: https://twitter.com/benrwoodard
-markup:
-  highlight:
-    codeFences: no
 services:
   instagram:
     disableInlineCSS: yes
   twitter:
     disableInlineCSS: yes
 ignoreErrors: ["error-remote-getjson"]
+markup:
+  highlight:
+    codeFences: no
+  goldmark:
+    renderer:
+      unsafe: true

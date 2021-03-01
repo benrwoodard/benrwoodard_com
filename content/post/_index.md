@@ -5,7 +5,7 @@ aliases:
 - blog
 - showcase
 - docs
-author: Hugo Authors
+author: Ben R Woodard
 tags:
 - index
 title: Posts
