@@ -447,14 +447,14 @@ head(deck)</code></pre>
 }
 
 deal(7)</code></pre>
-<pre><code>##    face     suit value
-## 1   ace   spades     1
-## 2 seven   spades     7
-## 3 seven diamonds     7
-## 4   six   spades     6
-## 5 seven   hearts     7
-## 6  king   hearts    13
-## 7 eight   spades     8</code></pre>
+<pre><code>##   face     suit value
+## 1 five   spades     5
+## 2  two    clubs     2
+## 3 king    clubs    13
+## 4  ace   hearts     1
+## 5 jack    clubs    11
+## 6  ten diamonds    10
+## 7  two diamonds     2</code></pre>
 </div>
 <div id="lets-play-a-game-of-blackjack" class="section level2">
 <h2>Let’s play a game of blackjack</h2>
@@ -496,13 +496,13 @@ deal(7)</code></pre>
 set &lt;- deal(2)</code></pre>
 <pre><code>## Joining, by = c(&quot;face&quot;, &quot;suit&quot;, &quot;value&quot;)</code></pre>
 <pre class="r"><code>set$myhand</code></pre>
-<pre><code>##   face   suit value
-## 1 four  clubs     4
-## 2 nine hearts     9</code></pre>
+<pre><code>##    face   suit value
+## 1 seven spades     7
+## 2   ace hearts     1</code></pre>
 <pre class="r"><code>set$dealerhand</code></pre>
-<pre><code>##    face     suit value
-## 1 eight diamonds     8
-## 2 three diamonds     3</code></pre>
+<pre><code>##   face   suit value
+## 1  six spades     6
+## 2  two hearts     2</code></pre>
 <pre class="r"><code>#play on if you feel lucky!
 set &lt;- deal(1, set)</code></pre>
 <pre><code>## Joining, by = c(&quot;face&quot;, &quot;suit&quot;, &quot;value&quot;)
@@ -510,13 +510,13 @@ set &lt;- deal(1, set)</code></pre>
 <pre class="r"><code>str(set)</code></pre>
 <pre><code>## List of 2
 ##  $ myhand    :&#39;data.frame&#39;:  3 obs. of  3 variables:
-##   ..$ face : chr [1:3] &quot;four&quot; &quot;nine&quot; &quot;three&quot;
-##   ..$ suit : chr [1:3] &quot;clubs&quot; &quot;hearts&quot; &quot;hearts&quot;
-##   ..$ value: int [1:3] 4 9 3
+##   ..$ face : chr [1:3] &quot;seven&quot; &quot;ace&quot; &quot;six&quot;
+##   ..$ suit : chr [1:3] &quot;spades&quot; &quot;hearts&quot; &quot;clubs&quot;
+##   ..$ value: int [1:3] 7 1 6
 ##  $ dealerhand:&#39;data.frame&#39;:  2 obs. of  3 variables:
-##   ..$ face : chr [1:2] &quot;eight&quot; &quot;three&quot;
-##   ..$ suit : chr [1:2] &quot;diamonds&quot; &quot;diamonds&quot;
-##   ..$ value: int [1:2] 8 3</code></pre>
+##   ..$ face : chr [1:2] &quot;six&quot; &quot;two&quot;
+##   ..$ suit : chr [1:2] &quot;spades&quot; &quot;hearts&quot;
+##   ..$ value: int [1:2] 6 2</code></pre>
 <p>Now we have the dealers hand</p>
 </div>
 
