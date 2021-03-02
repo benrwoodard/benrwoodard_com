@@ -13,15 +13,19 @@ menu:
     - identifier: home
       name: Home
       url: /
-      weight: 10
+      weight: 1
     - identifier: tags
       name: Tags
       url: /tags
-      weight: 0
+      weight: 3
     - identifier: about
       name: About
       url: /about/
-      weight: 0
+      weight: 4
+    - identifier: adobeanalyticsr
+      name: adobeanalyticsr
+      url: https://adobeanalyticsr.com
+      weight: 2
 taxonomies:
   author: authors
   category: categories

@@ -16,7 +16,7 @@ authors:
 <center>
 <img src = '/images/family.jpg' style = "max-width: 400px;" >  
 
-<small><i>That sun was really in our eyes.</i></small>
+<small><i>That sun was really bright.</i></small>
 </center>
 
 Ben has been working with clients in the digital marketing space for over 15 years.  He got his start in analytics by developing Wordpress sites for clients which quickly led to implementing analytics solutions to track the value of the digital marketing dollars his clients were spending. 
