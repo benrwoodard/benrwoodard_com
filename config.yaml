@@ -6,6 +6,7 @@ languageCode: en
 DefaultContentLanguage: en
 enableInlineShortcodes: yes
 footnoteReturnLinkContents: ^
+gtm_id: GTM-WLBMNP
 googleAnalytics: UA-XXXX
 DisqusShortname: ''
 theme: hugo-theme-chunky-poster
@@ -31,7 +32,7 @@ taxonomies:
 params:
   author: Ben R Woodard
   commento:
-    enable: yes
+    enable: no
     url: https://commento.io
   customCSS: []
   customJS: []

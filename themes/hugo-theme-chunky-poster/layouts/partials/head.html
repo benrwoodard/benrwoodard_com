@@ -42,7 +42,8 @@
 {{ range .Site.Params.customCSS -}}
     <link rel="stylesheet" href="{{ "css/" | relURL }}{{ . }}">
 {{ end }}
-
+{{ if .Site.Params.gtm_id}}{{- partial "gtm.html" . }}
+{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
 {{- with .OutputFormats.Get "RSS" }}
   <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}">

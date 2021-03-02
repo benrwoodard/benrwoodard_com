@@ -20,6 +20,10 @@ I remember the feeling of excitement that tickled my head when I added the dimen
 </center>
 <hr>
 
+Now you can simply import the package using the `install.packages()` function.
+`install.packages('adobeanalyticsr')`
+
+
 Well, I mean, once I was able to get it past the 1.4 API guards that didn't let more than 4 dimension out at one time.  These lords of the data would even make you add your request to a queue where it would sometimes site for days. 
 
 Don't get me wrong, even with these governing beings lording over the data access, the value this new world of pulling data using the API brought my work was far beyond the world I lived in before. 
