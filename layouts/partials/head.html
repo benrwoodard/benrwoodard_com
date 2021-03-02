@@ -22,7 +22,9 @@
 <link rel="manifest" href="{{ "manifest.json" | relURL }}">
 <link rel="mask-icon" href="{{ "safari-pinned-tab.svg" | relURL }}" color="#0c344b">
 <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-<link rel="" href="fooledyou.com">
+<!--This is where GTM is going--> 
+{{ if .Site.Params.gtm_id}}{{- partial "gtm.html" . }}{{ end }}
+
 {{ if .Site.Params.prismJS.enable }}
     {{ if .Site.Params.prismJS.theme }}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-{{ .Site.Params.prismJS.theme }}.min.css">

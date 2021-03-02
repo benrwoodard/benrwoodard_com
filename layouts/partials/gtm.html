@@ -28,3 +28,6 @@
 	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','{{ .Site.Params.gtm_id }}');</script>{{ end }}{{ end }}
+	{{ if (in (.Site.BaseURL | string) "localhost") }}
+	<!--this is really cool--> 
+	{{- end}}
