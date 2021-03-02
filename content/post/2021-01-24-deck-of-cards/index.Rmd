@@ -12,6 +12,7 @@ Just for the fun of it, I wanted to see how to create a complete deck of playing
 
 So here we go! 
 
+<!--more-->
 **Goal:**
 We need to create a deck of cards that includes 4 different suits of 13 different values, and 13 different faces.
 
@@ -79,9 +80,11 @@ deal(7)
 
 ## Let's play a game of blackjack
 
-Now that we have the deck compiled we can start playing Blackjack.  The biggest problem we are going to have is dealing cards from a single deck witout having it reshuffle using another function call.  The remaining items in the deck must be saved as the new deck.
+Now that we have the deck compiled we can start playing a game.  Blackjack will be a great place to start since it is fairly straight forward.  The biggest problem we are going to have is dealing cards from a single deck without having it reshuffle using another function call.  The remaining items in the deck must be saved as the new deck.
 
-We will need to remove the items from the dealers hand and save it as a list item. Then we need to deal out the 2 cards for the player. If the user wants another card then he will need to ask for a new card while supplying the dealer hand and the user hand so that these rows are not included in the deck when asked.
+There is a simple solution to keeping the cards that were drawn from being pulled again. The 'anti_join()' function can help us with that. 
+
+We will need to remove the items from the dealers hand and save it as a list item. Then we need to deal out the 2 cards for the player. If the user wants another card then he will need to ask for a new card while supplying the dealer hand along with the user hand.  It is important that these rows are not included in the deck when asked.
 
 Let's edit the deal function to return all 3 elements if needed.
 
@@ -127,5 +130,6 @@ set <- deal(1, set)
 str(set)
 
 ```
-Now we have the dealers hand
+
+Now we have the dealers hand and the players hand. This is just a start but a fun excercise for me and my 11 year old son, Garrett. 
 

@@ -7,25 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/authors/benrwoodard/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/authors/benrwoodard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Now On CRAN adobeanalyticsr</title>
+      <link>/post/now_on_cran_adobeanalyticsr/</link>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/now_on_cran_adobeanalyticsr/</guid>
+      <description>
+
+
+&lt;p&gt;I’m super excited to announce that adobeanaltyicsr v0.1.5 is now available on CRAN! adobeanalyticsr is an R client for the new ‘Adobe Analytics’ API 2.0 and had a lot of great features that I believe will help data analysts do their jobs better.&lt;/p&gt;
+</description>
+    </item>
+    
     <item>
       <title>How to make a deck of cards in R</title>
       <link>/post/2021-01-24-deck-of-cards/</link>
       <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/post/2021-01-24-deck-of-cards/</guid>
-      <description>Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible. Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be?
-So here we go!
-Goal: We need to create a deck of cards that includes 4 different suits of 13 different values, and 13 different faces.</description>
+      <description>
+
+
+&lt;p&gt;Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible. Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be?&lt;/p&gt;
+&lt;p&gt;So here we go!&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>About</title>
+      <title>About Ben</title>
       <link>/about/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>I&amp;rsquo;m writing a little bit to see if this is the issue I&amp;rsquo;m running into.</description>
+      <description>That sun was really in our eyes.
+ Ben has been working with clients in the digital marketing space for over 15 years. He got his start in analytics by developing Wordpress sites for clients which quickly led to implementing analytics solutions to track the value of the digital marketing dollars his clients were spending.
+When his full-time youth ministry position ended due to the 2008 economy downturn, he started his own digital business managing website development projects, technical SEO audits, analytics implementation, and digital marketing strategy for over 50 different clients in a wide variety of industries.</description>
     </item>
     
   </channel>

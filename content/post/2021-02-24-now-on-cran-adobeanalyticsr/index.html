@@ -1,30 +1,44 @@
 ---
-draft: true
-title: ["Now On CRAN adobeanalyticsr"]
-author: ["Ben R Woodard"]
-date: '2021-02-24'
-slug: ["now_on_cran_adobeanalyticsr"]
-categories: ["R"]
-tags: ["package", "rsitecatalyst", "adobe analytics"]
-images: ["adobeanalyticsr_logo2.png"]
-authors: ["benrwoodard"]
+title: Now On CRAN adobeanalyticsr
+author: Ben R Woodard
+date: '2021-03-01'
+slug: now_on_cran_adobeanalyticsr
+categories: R
+tags: 
+  - package 
+  - rsitecatalyst
+  - adobe analytics
+images: ['adobeanalyticsr_logo2.png']
+authors: 
+- benrwoodard
 ---
 
 
 
-<p>It seems like forever ago that I started using the Adobe Analytic R package, RSiteCatalyst but it was just in 2017. The ability to work with the behavioral data outside of the walls of Analysis Workspace and Report Builder was so freeing!
-<!--more--></p>
-I remember the feeling of excitement that tickled my head when I added the dimensions and metrics arguments to the function and pressed CNTRL+ENTER and discovered the data, just as I had imagined, was now sitting in my RStudio project waiting to do whatever I told it to do.
-<hr>
-<center>
-<img src="images/key2.png" />
-</center>
-<hr>
-<p>Now you can simply import the package using the <code>install.packages()</code> function.
-<code>install.packages('adobeanalyticsr')</code></p>
-<p>Well, I mean, once I was able to get it past the 1.4 API guards that didn’t let more than 4 dimension out at one time. These lords of the data would even make you add your request to a queue where it would sometimes site for days.</p>
-<p>Don’t get me wrong, even with these governing beings lording over the data access, the value this new world of pulling data using the API brought my work was far beyond the world I lived in before.</p>
-<p>But, I began hearing rumors of a new world. A world where the data roamed free and could come an go when it pleased. It would once again lift the sky of my expectations. The data could now go out with groups of an unlimited number. The requests to play were no longer limited by the requests of all the others in the playground.</p>
-<p>Well, people…the world has a name and it is <strong>Adobe Analytics 2.0</strong>.</p>
-<p>And the way to access this world in R is now through the new package <strong>adobeanaltyicsr</strong>. With the official submission to CRAN, it is now available for all to download.</p>
-<pre class="r"><code>install.packages(&#39;adobeanalyticsr&#39;)</code></pre>
+<p>I’m super excited to announce that adobeanaltyicsr v0.1.5 is now available on CRAN! adobeanalyticsr is an R client for the new ‘Adobe Analytics’ API 2.0 and had a lot of great features that I believe will help data analysts do their jobs better.</p>
+<!--more-->
+<p>The new adobeanalyticsr package was an open source project that started when <a href="https://twitter.com/tgwilson">Tim Wilson</a> began exploring functions that would pull data using the new API 2.0. This API has already been making waves in the analytics industry since it’s introduction via the Analysis Workspace user interface a few years back.</p>
+<p>I believe it is critical to thank Randy for the work he put in to creating and maintaining RSiteCatalyst. His development work on the old Adobe Analytics R package quite literally changed the way I did my job and the questions I could ask. I truly hope that adobeanalyticsr can continue the level of excellence that Randy instilled in RSiteCatalyst.</p>
+<p>Here are a few of the features the new R package for Adobe Anaytics affords us as analysts over the old API:</p>
+<ul>
+<li>Up to 20 dimensions at a time.
+<ul>
+<li>The old API 1.4 had a limit of 4</li>
+<li>The API 2.0 doesn’t have any restrictions but the package does. This limitation is only temporary
+while we develop the package.</li>
+</ul></li>
+<li>Faster API calls.
+<ul>
+<li>The old API used a queue process.</li>
+<li>The new API has no queue but needs recursive data requests to pull breakdown reports.</li>
+</ul></li>
+<li>Future functionality
+<ul>
+<li>The old API has not been developed in quite a while</li>
+<li>The new API is getting a lot of focus since it is the backbone of Analysis Workspace.</li>
+</ul></li>
+</ul>
+<p>Those three distinctions are just a few of the many benefits of using the new api. Now with the package being included in CRAN, everyone can easily begin using the new powerful API.</p>
+<pre class="r"><code>install.packages(&#39;adobeanalyticsr&#39;)
+library(adobeanalyticsr)</code></pre>
+<p>While this is a great milestone that has been in the works for about a year and a half, it is just the beginning. Development work has already begun on the next itteration of the package. We are looking for more community feedback and would love to hear your thoughts on improvements and enhancements to the package. Checkout <a href="https://adobeanalyticsr.com">AdobeAnalyticsR.com</a> for more information and a link to the github repo where you can submit issues and submit enhancments.</p>
