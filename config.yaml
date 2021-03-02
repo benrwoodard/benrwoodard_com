@@ -7,7 +7,8 @@ DefaultContentLanguage: en
 enableInlineShortcodes: yes
 footnoteReturnLinkContents: ^
 gtm_id: GTM-WLBMNP
-googleAnalytics: UA-XXXX
+gtm_datalayer: basic
+googleAnalytics: UA-12086340-1
 DisqusShortname: ''
 theme: hugo-theme-chunky-poster
 menu:
