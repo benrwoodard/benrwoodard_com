@@ -401,11 +401,13 @@ summary {
 ## [7] &quot;dataAnomalyDetected&quot;</code></pre>
 <p>If you request more than one metric it will return a row for each metrica at the granularity level you requested in the function.</p>
 <p>For instance, the following function will return this:</p>
+<pre><code>aw_anomaly_report(date_range = c(Sys.Date()-31, Sys.Date()-1),
+                  metrics = c(&#39;visits&#39;,&#39;visitors&#39;))</code></pre>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#nzjyyrcbby .gt_table {
+#blikrwjrrb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -430,7 +432,7 @@ summary {
   border-left-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_heading {
+#blikrwjrrb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -442,7 +444,7 @@ summary {
   border-right-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_title {
+#blikrwjrrb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -452,7 +454,7 @@ summary {
   border-bottom-width: 0;
 }
 
-#nzjyyrcbby .gt_subtitle {
+#blikrwjrrb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -462,13 +464,13 @@ summary {
   border-top-width: 0;
 }
 
-#nzjyyrcbby .gt_bottom_border {
+#blikrwjrrb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_col_headings {
+#blikrwjrrb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -483,7 +485,7 @@ summary {
   border-right-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_col_heading {
+#blikrwjrrb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -503,7 +505,7 @@ summary {
   overflow-x: hidden;
 }
 
-#nzjyyrcbby .gt_column_spanner_outer {
+#blikrwjrrb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -515,15 +517,15 @@ summary {
   padding-right: 4px;
 }
 
-#nzjyyrcbby .gt_column_spanner_outer:first-child {
+#blikrwjrrb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nzjyyrcbby .gt_column_spanner_outer:last-child {
+#blikrwjrrb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nzjyyrcbby .gt_column_spanner {
+#blikrwjrrb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -535,7 +537,7 @@ summary {
   width: 100%;
 }
 
-#nzjyyrcbby .gt_group_heading {
+#blikrwjrrb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -557,7 +559,7 @@ summary {
   vertical-align: middle;
 }
 
-#nzjyyrcbby .gt_empty_group_heading {
+#blikrwjrrb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -572,15 +574,15 @@ summary {
   vertical-align: middle;
 }
 
-#nzjyyrcbby .gt_from_md > :first-child {
+#blikrwjrrb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nzjyyrcbby .gt_from_md > :last-child {
+#blikrwjrrb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nzjyyrcbby .gt_row {
+#blikrwjrrb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -599,7 +601,7 @@ summary {
   overflow-x: hidden;
 }
 
-#nzjyyrcbby .gt_stub {
+#blikrwjrrb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -611,7 +613,7 @@ summary {
   padding-left: 12px;
 }
 
-#nzjyyrcbby .gt_summary_row {
+#blikrwjrrb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -621,7 +623,7 @@ summary {
   padding-right: 5px;
 }
 
-#nzjyyrcbby .gt_first_summary_row {
+#blikrwjrrb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -631,7 +633,7 @@ summary {
   border-top-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_grand_summary_row {
+#blikrwjrrb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -641,7 +643,7 @@ summary {
   padding-right: 5px;
 }
 
-#nzjyyrcbby .gt_first_grand_summary_row {
+#blikrwjrrb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -651,11 +653,11 @@ summary {
   border-top-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_striped {
+#blikrwjrrb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nzjyyrcbby .gt_table_body {
+#blikrwjrrb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -664,7 +666,7 @@ summary {
   border-bottom-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_footnotes {
+#blikrwjrrb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -678,13 +680,13 @@ summary {
   border-right-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_footnote {
+#blikrwjrrb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#nzjyyrcbby .gt_sourcenotes {
+#blikrwjrrb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -698,46 +700,46 @@ summary {
   border-right-color: #D3D3D3;
 }
 
-#nzjyyrcbby .gt_sourcenote {
+#blikrwjrrb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#nzjyyrcbby .gt_left {
+#blikrwjrrb .gt_left {
   text-align: left;
 }
 
-#nzjyyrcbby .gt_center {
+#blikrwjrrb .gt_center {
   text-align: center;
 }
 
-#nzjyyrcbby .gt_right {
+#blikrwjrrb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nzjyyrcbby .gt_font_normal {
+#blikrwjrrb .gt_font_normal {
   font-weight: normal;
 }
 
-#nzjyyrcbby .gt_font_bold {
+#blikrwjrrb .gt_font_bold {
   font-weight: bold;
 }
 
-#nzjyyrcbby .gt_font_italic {
+#blikrwjrrb .gt_font_italic {
   font-style: italic;
 }
 
-#nzjyyrcbby .gt_super {
+#blikrwjrrb .gt_super {
   font-size: 65%;
 }
 
-#nzjyyrcbby .gt_footnote_marks {
+#blikrwjrrb .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="nzjyyrcbby" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="blikrwjrrb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -854,6 +856,9 @@ summary {
 <li>Anoms = The filtered view of the data showing only those rows (by metric) where ‘anomalyDetection = TRUE’.</li>
 <li>Viz = A line graph produced using ggplot which includes the error bar, points on the timeline where an anomay was detected, and finally the data shown in a line expanding over the period requested in the date range.</li>
 </ol>
+<pre class="r"><code>aw_anomaly_report(date_range = c(Sys.Date()-91, Sys.Date()-1),
+                  metrics = c(&#39;visits&#39;,&#39;visitors&#39;),
+                  quickView = TRUE)</code></pre>
 <pre><code>## [[1]]
 ## [[1]]$data
 ## # A tibble: 90 x 7
