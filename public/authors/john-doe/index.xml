@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ben R Woodard</title>
-    <link>/authors/john-doe/</link>
+    <link>https://benrwoodard.com/authors/john-doe/</link>
     <description>Recent content on Ben R Woodard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright><atom:link href="/authors/john-doe/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright><atom:link href="https://benrwoodard.com/authors/john-doe/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

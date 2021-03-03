@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>example on Ben R Woodard</title>
-    <link>/tags/example/</link>
+    <link>https://benrwoodard.com/tags/example/</link>
     <description>Recent content in example on Ben R Woodard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/example/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://benrwoodard.com/tags/example/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to make a deck of cards in R</title>
-      <link>/post/2021-01-24-deck-of-cards/</link>
+      <link>https://benrwoodard.com/post/2021-01-24-deck-of-cards/</link>
       <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/2021-01-24-deck-of-cards/</guid>
+      <guid>https://benrwoodard.com/post/2021-01-24-deck-of-cards/</guid>
       <description>Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible. Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be? So here we go!
 Goal: We need to create a deck of cards that includes 4 different suits of 13 different values, and 13 different faces.</description>
     </item>

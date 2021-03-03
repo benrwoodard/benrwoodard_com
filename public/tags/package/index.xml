@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>package on Ben R Woodard</title>
-    <link>/tags/package/</link>
+    <link>https://benrwoodard.com/tags/package/</link>
     <description>Recent content in package on Ben R Woodard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/package/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://benrwoodard.com/tags/package/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Now On CRAN adobeanalyticsr</title>
-      <link>/post/now_on_cran_adobeanalyticsr/</link>
+      <link>https://benrwoodard.com/post/now_on_cran_adobeanalyticsr/</link>
       <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>/post/now_on_cran_adobeanalyticsr/</guid>
+      <guid>https://benrwoodard.com/post/now_on_cran_adobeanalyticsr/</guid>
       <description>
 
 
