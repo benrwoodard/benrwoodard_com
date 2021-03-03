@@ -4,26 +4,51 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/benrwoodard/</loc>
-    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/adobe-analytics/</loc>
-    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
+    <loc>/categories/adobeanalyticsr/</loc>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2021-03-02-anaomaly-detection-adobe-api-2-0-adobeanalytisr/</loc>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-03-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/adobe-analytics/</loc>
     <lastmod>2021-03-01T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,22 +63,12 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/r/</loc>
     <lastmod>2021-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/rsitecatalyst/</loc>
-    <lastmod>2021-03-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2021-03-01T00:00:00+00:00</lastmod>
   </url>
   

@@ -2,7 +2,7 @@
 title: 'Anaomaly Detection adobeanalytisr'
 author: 'Ben R Woodard'
 date: '2021-03-02'
-draft: true
+draft: false
 slug: []
 categories: ['adobeanalyticsr']
 tags:

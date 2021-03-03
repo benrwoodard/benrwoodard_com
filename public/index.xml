@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>Copyright © 2021, Ben R Woodard; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Anaomaly Detection adobeanalytisr</title>
+      <link>/post/2021-03-02-anaomaly-detection-adobe-api-2-0-adobeanalytisr/</link>
+      <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2021-03-02-anaomaly-detection-adobe-api-2-0-adobeanalytisr/</guid>
+      <description>
+
+
+&lt;p&gt;When I first started working with the new Adobe Analytics API 2.0 I wanted to tap into the powerful anomaly detection that was built into Analysis Workspace. According to Adobe “Anomaly Detection provides a statistical method to determine how a given metric has changed in relation to previous data.” </description>
+    </item>
+    
     <item>
       <title>Now On CRAN adobeanalyticsr</title>
       <link>/post/now_on_cran_adobeanalyticsr/</link>
