@@ -1,0 +1,556 @@
+---
+title: 'Anaomaly Detection adobeanalytisr'
+author: 'Ben R Woodard'
+date: '2021-03-02'
+draft: true
+slug: []
+categories: ['adobeanalyticsr']
+tags:
+  - R
+images: 
+  - anomaly_detection.png
+authors: ['benrwoodard']
+---
+
+
+
+<p>When I first started working with the new Adobe Analytics API 2.0 I wanted to tap into the powerful anomaly detection that was built into Analysis Workspace. According to Adobe “Anomaly Detection provides a statistical method to determine how a given metric has changed in relation to previous data.” <!--more--></p>
+<p>The hope was always that the Anomaly Detection would allow analysts to separate “true signals” from “noise” but that’s been pretty difficult in the Analysis Workspace UI. It has definitly helped ‘identify potential factors that contributed to those signals or anomalies’ but it has fallen short in actually providing the final solution. That’s because anomalies are complex and require context to prove whether the event can be repeated or should just be explained.</p>
+<p>The hope of anomaly detection has always the same. Adobe’s documentation expresses it very well.</p>
+<blockquote>
+<p>…it lets you identify which statistical fluctuations matter and which don’t. You can then identify the root cause of a true anomaly. Furthermore, you can get reliable metric (KPI) forecasts.</p>
+</blockquote>
+<p>Unfortunately the reality is that using this tool of statistical analysis can prove to be a lot of wasted time and effort. With that being said, Adobe’s anomaly detection does provide a very powerful opportunity if used correctly.</p>
+<p>The current application of Analysis Workspace’s anomaly detection algorithm includes</p>
+<ol style="list-style-type: decimal">
+<li>Support for hourly, weekly, and monthly granularity, in addition to the existing daily granularity.</li>
+<li>Awareness of seasonality (such as “Black Friday”) and holidays.</li>
+</ol>
+<div id="so-what-does-this-look-like-in-adobeanalyticsr" class="section level3">
+<h3>So what does this look like in adobeanalyticsr?</h3>
+<p>The new adobeanaltyicsr function for anomaly detection, <code>aw_anomaly_report()</code>, is designed to facilitate the principle of “speed to analysis” while fostering better reporting opportunities.</p>
+<p>The default function call will return a basic data frame of 7 different columns.</p>
+<pre><code>## [1] &quot;day&quot;                 &quot;metric&quot;              &quot;data&quot;               
+## [4] &quot;dataExpected&quot;        &quot;dataUpperBound&quot;      &quot;dataLowerBound&quot;     
+## [7] &quot;dataAnomalyDetected&quot;</code></pre>
+<p>If you request more than one metric it will return a row for each metrica at the granularity level you requested in the function.</p>
+<p>For instance, the following function will return this:</p>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#lfhsttmlul .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lfhsttmlul .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lfhsttmlul .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lfhsttmlul .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lfhsttmlul .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lfhsttmlul .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lfhsttmlul .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lfhsttmlul .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lfhsttmlul .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lfhsttmlul .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lfhsttmlul .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lfhsttmlul .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lfhsttmlul .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#lfhsttmlul .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lfhsttmlul .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lfhsttmlul .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lfhsttmlul .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#lfhsttmlul .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lfhsttmlul .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#lfhsttmlul .gt_left {
+  text-align: left;
+}
+
+#lfhsttmlul .gt_center {
+  text-align: center;
+}
+
+#lfhsttmlul .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lfhsttmlul .gt_font_normal {
+  font-weight: normal;
+}
+
+#lfhsttmlul .gt_font_bold {
+  font-weight: bold;
+}
+
+#lfhsttmlul .gt_font_italic {
+  font-style: italic;
+}
+
+#lfhsttmlul .gt_super {
+  font-size: 65%;
+}
+
+#lfhsttmlul .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="lfhsttmlul" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">day</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">metric</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">data</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">dataExpected</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">dataUpperBound</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">dataLowerBound</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">dataAnomalyDetected</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">2021-01-30</td>
+      <td class="gt_row gt_left">visits</td>
+      <td class="gt_row gt_right">81</td>
+      <td class="gt_row gt_right">108.19670</td>
+      <td class="gt_row gt_right">214.1967</td>
+      <td class="gt_row gt_right">2.196702</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-01-30</td>
+      <td class="gt_row gt_left">visitors</td>
+      <td class="gt_row gt_right">76</td>
+      <td class="gt_row gt_right">122.12135</td>
+      <td class="gt_row gt_right">216.1214</td>
+      <td class="gt_row gt_right">28.121355</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-01-31</td>
+      <td class="gt_row gt_left">visits</td>
+      <td class="gt_row gt_right">99</td>
+      <td class="gt_row gt_right">82.79268</td>
+      <td class="gt_row gt_right">188.7927</td>
+      <td class="gt_row gt_right">0.000000</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-01-31</td>
+      <td class="gt_row gt_left">visitors</td>
+      <td class="gt_row gt_right">90</td>
+      <td class="gt_row gt_right">73.94931</td>
+      <td class="gt_row gt_right">167.9493</td>
+      <td class="gt_row gt_right">0.000000</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-02-01</td>
+      <td class="gt_row gt_left">visits</td>
+      <td class="gt_row gt_right">286</td>
+      <td class="gt_row gt_right">255.65801</td>
+      <td class="gt_row gt_right">414.3557</td>
+      <td class="gt_row gt_right">96.960321</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-02-01</td>
+      <td class="gt_row gt_left">visitors</td>
+      <td class="gt_row gt_right">253</td>
+      <td class="gt_row gt_right">231.47177</td>
+      <td class="gt_row gt_right">373.3304</td>
+      <td class="gt_row gt_right">89.613129</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-02-02</td>
+      <td class="gt_row gt_left">visits</td>
+      <td class="gt_row gt_right">336</td>
+      <td class="gt_row gt_right">371.41837</td>
+      <td class="gt_row gt_right">599.3508</td>
+      <td class="gt_row gt_right">143.485892</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-02-02</td>
+      <td class="gt_row gt_left">visitors</td>
+      <td class="gt_row gt_right">296</td>
+      <td class="gt_row gt_right">321.87726</td>
+      <td class="gt_row gt_right">516.7611</td>
+      <td class="gt_row gt_right">126.993463</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-02-03</td>
+      <td class="gt_row gt_left">visits</td>
+      <td class="gt_row gt_right">396</td>
+      <td class="gt_row gt_right">295.92730</td>
+      <td class="gt_row gt_right">475.4076</td>
+      <td class="gt_row gt_right">116.447014</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">2021-02-03</td>
+      <td class="gt_row gt_left">visitors</td>
+      <td class="gt_row gt_right">360</td>
+      <td class="gt_row gt_right">240.46834</td>
+      <td class="gt_row gt_right">384.3116</td>
+      <td class="gt_row gt_right">96.625076</td>
+      <td class="gt_row gt_center">FALSE</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+<p>Notice that each row includes the data, expected, upper bound, and lower bounds calculated for you already. It also includes whether or not the data crossed one of those bounds and was determined to be an anomaly.</p>
+<p>For those looking to get to the ‘raw’ data, this should be just what you need to get going. But there are many times that all you are wanting to do is visualize the data or just show the dates that an anomaly was detected. This was my main use case so I created an argument that will help you quickly view the results.</p>
+<p>Adding the argument <code>quickView = TRUE</code> to the function call will return a list of 3 items. It will also split these results by the different metrics that were requested, if there are more than 1 in the request.</p>
+<p>The following example shows the same function call as above but it includes the <code>quickView = TRUE</code> argument. The list includes:</p>
+<ol style="list-style-type: decimal">
+<li>Data = The raw data just like in the default function but split up by metric if you have requested more than one.</li>
+<li>Anoms = The filtered view of the data showing only those rows (by metric) where ‘anomalyDetection = TRUE’.</li>
+<li>Viz = A line graph produced using ggplot which includes the error bar, points on the timeline where an anomay was detected, and finally the data shown in a line expanding over the period requested in the date range.</li>
+</ol>
+<pre><code>## [[1]]
+## [[1]]$data
+## # A tibble: 90 x 7
+##    day        metric  data dataExpected dataUpperBound dataLowerBound
+##    &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 2020-12-01 visits   347        215.            319.          110. 
+##  2 2020-12-02 visits   432        195.            299.           90.6
+##  3 2020-12-03 visits   356        262.            385.          139. 
+##  4 2020-12-04 visits   252        160.            265.           55.9
+##  5 2020-12-05 visits    85         89.9           194.            0  
+##  6 2020-12-06 visits    99         91.1           195.            0  
+##  7 2020-12-07 visits   267        230.            341.          119. 
+##  8 2020-12-08 visits   314        303.            448.          157. 
+##  9 2020-12-09 visits   229        257.            380.          135. 
+## 10 2020-12-10 visits   255        330.            485.          175. 
+## # … with 80 more rows, and 1 more variable: dataAnomalyDetected &lt;lgl&gt;
+## 
+## [[1]]$anoms
+## # A tibble: 4 x 7
+##   day        metric  data dataExpected dataUpperBound dataLowerBound
+##   &lt;date&gt;     &lt;chr&gt;  &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+## 1 2020-12-01 visits   347         215.           319.          110. 
+## 2 2020-12-02 visits   432         195.           299.           90.6
+## 3 2020-12-24 visits    67         260.           377.          143. 
+## 4 2021-01-05 visits   347         213.           320.          106. 
+## # … with 1 more variable: dataAnomalyDetected &lt;lgl&gt;
+## 
+## [[1]]$viz</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre><code>## 
+## 
+## [[2]]
+## [[2]]$data
+## # A tibble: 90 x 7
+##    day        metric    data dataExpected dataUpperBound dataLowerBound
+##    &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+##  1 2020-12-01 visitors   312        195.            284.        107.   
+##  2 2020-12-02 visitors   384        177.            265.         89.2  
+##  3 2020-12-03 visitors   324        243.            356.        130.   
+##  4 2020-12-04 visitors   223        153.            241.         65.1  
+##  5 2020-12-05 visitors    76         88.4           176.          0.288
+##  6 2020-12-06 visitors    96         88.0           176.          0    
+##  7 2020-12-07 visitors   237        218.            322.        114.   
+##  8 2020-12-08 visitors   274        279.            411.        147.   
+##  9 2020-12-09 visitors   198        222.            326.        118.   
+## 10 2020-12-10 visitors   238        275.            402.        148.   
+## # … with 80 more rows, and 1 more variable: dataAnomalyDetected &lt;lgl&gt;
+## 
+## [[2]]$anoms
+## # A tibble: 6 x 7
+##   day        metric    data dataExpected dataUpperBound dataLowerBound
+##   &lt;date&gt;     &lt;chr&gt;    &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+## 1 2020-12-01 visitors   312         195.           284.          107. 
+## 2 2020-12-02 visitors   384         177.           265.           89.2
+## 3 2020-12-24 visitors    66         227.           326.          128. 
+## 4 2021-01-05 visitors   317         180.           268.           91.5
+## 5 2021-01-06 visitors   282         180.           269.           91.4
+## 6 2021-01-07 visitors   434         252.           379.          126. 
+## # … with 1 more variable: dataAnomalyDetected &lt;lgl&gt;
+## 
+## [[2]]$viz</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p>For more on Anomaly Detection in Analysis Workspace check out this video.</p>
+<p>{{<youtube krXyQCjXoeU>}}</p>
+<p>I’m always looking for new ways to serve up the anomaly detection data. If you have an idea, make sure to <a href="https://github.com/benrwoodard/adobeanalyticsr/issues">submit an issue</a> for me to work on with you.</p>
+</div>

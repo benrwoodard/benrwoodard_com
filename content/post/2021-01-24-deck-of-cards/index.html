@@ -10,9 +10,7 @@ authors: ["benrwoodard"]
 
 
 
-<p>Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible. Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be?</p>
-<p>So here we go!</p>
-<!--more-->
+<p>Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible. Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be? <strong>So here we go!</strong></p>
 <p><strong>Goal:</strong>
 We need to create a deck of cards that includes 4 different suits of 13 different values, and 13 different faces.</p>
 <ol style="list-style-type: decimal">
@@ -80,13 +78,13 @@ head(deck)</code></pre>
 
 deal(7)</code></pre>
 <pre><code>##    face     suit value
-## 1  nine   spades     9
-## 2 three diamonds     3
-## 3 three   spades     3
-## 4  king diamonds    13
-## 5  nine diamonds     9
-## 6   two    clubs     2
-## 7 seven   hearts     7</code></pre>
+## 1  king   spades    13
+## 2   six diamonds     6
+## 3  jack   spades    11
+## 4  four    clubs     4
+## 5 seven   spades     7
+## 6  five   hearts     5
+## 7   ace diamonds     1</code></pre>
 </div>
 <div id="lets-play-a-game-of-blackjack" class="section level2">
 <h2>Let’s play a game of blackjack</h2>
@@ -130,12 +128,12 @@ set &lt;- deal(2)</code></pre>
 <pre><code>## Joining, by = c(&quot;face&quot;, &quot;suit&quot;, &quot;value&quot;)</code></pre>
 <pre class="r"><code>set$myhand</code></pre>
 <pre><code>##   face     suit value
-## 1  six diamonds     6
-## 2 nine   hearts     9</code></pre>
+## 1  ace diamonds     1
+## 2  two    clubs     2</code></pre>
 <pre class="r"><code>set$dealerhand</code></pre>
-<pre><code>##    face     suit value
-## 1   ace diamonds     1
-## 2 three   hearts     3</code></pre>
+<pre><code>##   face     suit value
+## 1 four   spades     4
+## 2 four diamonds     4</code></pre>
 <pre class="r"><code>#play on if you feel lucky!
 set &lt;- deal(1, set)</code></pre>
 <pre><code>## Joining, by = c(&quot;face&quot;, &quot;suit&quot;, &quot;value&quot;)
@@ -143,12 +141,12 @@ set &lt;- deal(1, set)</code></pre>
 <pre class="r"><code>str(set)</code></pre>
 <pre><code>## List of 2
 ##  $ myhand    :&#39;data.frame&#39;:  3 obs. of  3 variables:
-##   ..$ face : chr [1:3] &quot;six&quot; &quot;nine&quot; &quot;jack&quot;
-##   ..$ suit : chr [1:3] &quot;diamonds&quot; &quot;hearts&quot; &quot;clubs&quot;
-##   ..$ value: int [1:3] 6 9 11
+##   ..$ face : chr [1:3] &quot;ace&quot; &quot;two&quot; &quot;two&quot;
+##   ..$ suit : chr [1:3] &quot;diamonds&quot; &quot;clubs&quot; &quot;spades&quot;
+##   ..$ value: int [1:3] 1 2 2
 ##  $ dealerhand:&#39;data.frame&#39;:  2 obs. of  3 variables:
-##   ..$ face : chr [1:2] &quot;ace&quot; &quot;three&quot;
-##   ..$ suit : chr [1:2] &quot;diamonds&quot; &quot;hearts&quot;
-##   ..$ value: int [1:2] 1 3</code></pre>
+##   ..$ face : chr [1:2] &quot;four&quot; &quot;four&quot;
+##   ..$ suit : chr [1:2] &quot;spades&quot; &quot;diamonds&quot;
+##   ..$ value: int [1:2] 4 4</code></pre>
 <p>Now we have the dealers hand and the players hand. This is just a start but a fun excercise for me and my 11 year old son, Garrett.</p>
 </div>

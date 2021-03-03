@@ -19,9 +19,10 @@ options(
   blogdown.method = 'html',
   blogdown.ext = '.Rmd',
   blogdown.author = 'Ben R Woodard'
-    
+  
 )
 
 # fix Hugo version
 options(blogdown.hugo.version = "0.80.0")
+
 

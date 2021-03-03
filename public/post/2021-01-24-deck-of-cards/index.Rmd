@@ -7,12 +7,9 @@ images: ["deckofcards.png"]
 tags: ["fun with r", "example"]
 authors: ["benrwoodard"]
 ---
+Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible.  Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be? **So here we go!**
 
-Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible.  Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be? 
 
-So here we go! 
-
-<!--more-->
 **Goal:**
 We need to create a deck of cards that includes 4 different suits of 13 different values, and 13 different faces.
 

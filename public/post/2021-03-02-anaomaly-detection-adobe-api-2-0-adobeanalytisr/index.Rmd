@@ -1,0 +1,30 @@
+---
+title: "Anaomaly Detection Adobe API 2.0 - adobeanalytisr"
+author: "Ben R Woodard"
+date: '2021-03-02'
+draft: true
+slug: []
+categories: adobeanalyticsr
+tags:
+- R
+- Adobe Analytics
+images: images/anomaly_detection.png
+authors: benrwoodard
+---
+The anomaly detection ability of Adobe Analytics is strong. The ability of the analytics industry to interpret and utilize the detection results needs some work.  The new adobeanaltyicsr function for anomaly detection,  `aw_anomaly_report()` is designed to help generate valuable reporting using the power of anomaly detection.
+
+```{r anom, message = FALSE, echo=FALSE, warning=FALSE}
+#install.packages('adobeanalyticsr')
+library(adobeanalyticsr)
+source('keys.r')
+anomaly_detection <- aw_anomaly_report(date_range = c(Sys.Date()-91, Sys.Date()-1),
+                                       metrics = 'visits',
+                                       quickView = T)
+
+anomaly_detection[[1]]$data
+anomaly_detection[[1]]$anoms
+
+```
+
+This is one of the quickest ways to fid anomalies in your data.
+This is an image   
