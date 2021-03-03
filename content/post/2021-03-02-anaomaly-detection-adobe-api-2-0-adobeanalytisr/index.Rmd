@@ -87,6 +87,6 @@ aw_anomaly_report(date_range = c(Sys.Date()-91, Sys.Date()-1),
 
 For more on Anomaly Detection in Analysis Workspace check out this video.
 
-{{<youtube krXyQCjXoeU>}}
+{{< youtube krXyQCjXoeU >}}
 
 I'm always looking for new ways to serve up the anomaly detection data. If you have an idea, make sure to [submit an issue](https://github.com/benrwoodard/adobeanalyticsr/issues) for me to work on with you.
