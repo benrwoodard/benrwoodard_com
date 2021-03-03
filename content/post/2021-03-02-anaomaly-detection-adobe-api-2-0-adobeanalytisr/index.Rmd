@@ -42,7 +42,7 @@ The default function call will return a basic data frame of 7 different columns.
 #install.packages('adobeanalyticsr')
 library(adobeanalyticsr)
 source('keys.r')
-anomaly_detection <- aw_anomaly_report(date_range = c(Sys.Date()-91, Sys.Date()-1),
+anomaly_detection <- aw_anomaly_report(date_range = c("2020-12-01", "2021-03-01"),
                                        metrics = 'visits',
                                        quickView = T)
 ```
@@ -57,12 +57,12 @@ If you request more than one metric it will return a row for each metrica at the
 For instance, the following function will return this:
 
 ```
-aw_anomaly_report(date_range = c(Sys.Date()-31, Sys.Date()-1),
+aw_anomaly_report(date_range = c("2020-12-01", "2021-03-01"),
                   metrics = c('visits','visitors'))
 ```
 
 ```{r}
-gt::gt(head(aw_anomaly_report(date_range = c(Sys.Date()-31, Sys.Date()-1),
+gt::gt(head(aw_anomaly_report(date_range = c("2020-12-01", "2021-03-01"),
                   metrics = c('visits','visitors')), 10))
 ```
 
@@ -79,7 +79,7 @@ The following example shows the same function call as above but it includes the 
 3. Viz = A line graph produced using ggplot which includes the error bar, points on the timeline where an anomay was detected, and finally the data shown in a line expanding over the period requested in the date range.
 
 ```{r, echo=TRUE}
-df <- aw_anomaly_report(date_range = c(Sys.Date()-91, Sys.Date()-1),
+df <- aw_anomaly_report(date_range = c("2020-12-01", "2021-03-01"),
                   metrics = c('visits','visitors'),
                   quickView = TRUE)
 df[[1]]$data
@@ -88,7 +88,7 @@ df[[1]]$anom
 
 <img src = 'unnamed-chunk-2-1.png' width = '100%'>
 
-```{r}
+```{r, echo=TRUE}
 df[[2]]$data
 df[[2]]$anoms
 ```
