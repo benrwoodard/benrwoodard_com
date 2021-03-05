@@ -1,5 +1,5 @@
 baseURL: https://benrwoodard.com
-title: 'Ben R Woodard'
+title: 'BenRWoodard.com'
 copyright: Copyright © 2021, Ben R Woodard; all rights reserved.
 paginate: 2
 languageCode: en
@@ -33,13 +33,15 @@ taxonomies:
   tag: tags
 params:
   author: Ben R Woodard
+  enableGitalk: true
   commento:
     enable: no
     url: https://commento.io
-  customCSS: []
+  customCSS: ["custom.css"]
   customJS: []
   dateFormat: January 2, 2006
-  description: A blog about life, analytics and R </br><i>but mainly about R</i>
+  subheader: A simple blog about analytics and R
+  description: I'm a data scientist at Search Discovery where I use R to solve problems and answer questions around digital marketing analytics.
   homepageImage: /images/bringcoffee.png
   gtm_id: GTM-WLBMNP
   gtm_datalayer: basic
@@ -54,6 +56,18 @@ params:
     linkedin: https://linkedin.com/in/benrwoodard
     rss: yes
     twitter: https://twitter.com/benrwoodard
+  gitalk:
+    clientID: Iv1.678c10057628e8ba # Your client ID
+    clientSecret: f397def477930616e0588272ad243c9f0eeb4c8d # Your client secret
+    repo: https://benrwoodard.com # The repo to store comments
+    owner: benrwoodard # Your GitHub ID
+    admin: benrwoodard # Required. Github repository owner and collaborators. (Users who having write access to this repository)
+    id: "location.pathname" # The unique id of the page.
+    labels: "gitalk" # Github issue labels. If you used to use Gitment, you can change it
+    perPage: 15 # Pagination size, with maximum 100.
+    pagerDirection: "last" # Comment sorting direction, available values are 'last' and 'first'.
+    createIssueManually: false # If it is 'false', it is auto to make a Github issue when the administrators login.
+    distractionFreeMode: false # Enable hot key (cmd|ctrl + enter) submit comment.
 services:
   instagram:
     disableInlineCSS: yes
