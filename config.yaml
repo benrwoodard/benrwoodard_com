@@ -57,7 +57,7 @@ params:
     rss: yes
     twitter: https://twitter.com/benrwoodard
   gitalk:
-    clientID: "Iv1.678c10057628e8ba"" # Your client ID
+    clientID: 'Iv1.678c10057628e8ba' # Your client ID
     clientSecret: f397def477930616e0588272ad243c9f0eeb4c8d # Your client secret
     repo: benrwoodard_com # The repo to store comments
     owner: benrwoodard # Your GitHub ID
