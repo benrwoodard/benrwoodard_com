@@ -14,9 +14,9 @@ menu:
       name: Home
       url: /
       weight: 1
-    - identifier: tags
-      name: Tags
-      url: /tags
+    - identifier: categories
+      name: Categories
+      url: /categories
       weight: 3
     - identifier: about
       name: About
@@ -33,7 +33,8 @@ taxonomies:
   tag: tags
 params:
   author: Ben R Woodard
-  enableGitalk: true
+  comments: 
+    enable: true
   commento:
     enable: no
     url: https://commento.io
@@ -56,18 +57,6 @@ params:
     linkedin: https://linkedin.com/in/benrwoodard
     rss: yes
     twitter: https://twitter.com/benrwoodard
-  gitalk:
-    clientID: '678c10057628e8ba' # Your client ID
-    clientSecret: '529fab31d13834c11153e070573a7e4b9ceeacc0' # Your client secret
-    repo: 'benrwoodard_com' # The repo to store comments
-    owner: 'benrwoodard' # Your GitHub ID
-    admin: 'benrwoodard' # Required. Github repository owner and collaborators. (Users who having write access to this repository)
-    id: 'location.pathname' # The unique id of the page.
-    labels: 'gitalk' # Github issue labels. If you used to use Gitment, you can change it
-    perPage: 15 # Pagination size, with maximum 100.
-    pagerDirection: 'last' # Comment sorting direction, available values are 'last' and 'first'.
-    createIssueManually: false # If it is 'false', it is auto to make a Github issue when the administrators login.
-    distractionFreeMode: false # Enable hot key (cmd|ctrl + enter) submit comment.
 services:
   instagram:
     disableInlineCSS: yes
