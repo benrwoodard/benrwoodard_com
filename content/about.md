@@ -23,6 +23,6 @@ Ben has been working with clients in the digital marketing space for over 15 yea
 
 When his full-time youth ministry position ended due to the 2008 economy downturn, he started his own digital business managing website development projects, technical SEO audits, analytics implementation, and digital marketing strategy for over 50 different clients in a wide variety of industries. 
 
-Since those early years, he has worked as a lead digital analyst in a rapidy growing non-profit, an analytics manager in a multi-billion dollar organization, and now as a data scientis with Search Discovery, Inc (https://searchdiscovery.com) in 2019. 
+Since those early years, he has worked as a lead digital analyst in a rapidly growing non-profit, an analytics manager in a multibillion dollar organization, and now as a data scientist with Search Discovery, Inc (https://searchdiscovery.com) in 2019. 
 
 Ben is based in the Atlanta area with his wife, 4 boys, a dog, and a cat. 
