@@ -1,0 +1,100 @@
+---
+title: adobeanalyticsr v0.2.1 - What's New?
+author: Ben R Woodard
+date: '2022-01-03'
+slug: []
+categories: []
+tags: [adobe analytics, R]
+images: ['newpackage.jpg']
+authors: [benrwoodard]
+---
+I'm happy to announce there is a new version of adobeanalyticsr on CRAN.  The new version brings some pretty big updates with it.  Here are the **top 4** that I feel are the biggest changes and improvements.
+
+### 1. JWT Authentication Support  
+
+This has been a long time coming. I have to admit that I have been working on getting JWT authentication working since the first version of the R package was published but just couldn't get it done.  Early last year after the first version was published to CRAN I had several conversations with analysts who, unfortunately, could not use the R package simply because it only used the OAuth authentication process.  
+
+Well that all changes with adobeanalyticsr v0.2.1 thanks to the work of [Charlie Gallagher](https://github.com/charlie-gallagher). A few months back he submitted the package's first official pull request from the community and it was JWT authentication.  
+
+The old 'aw_token()' function still works but has been deprecated due to the need to include 2 options for authentication versus just one. The goal was to not break existing workflows but enable future workflows to switch between authentication options as seamlessly as possible. (more on this below)  
+
+I've been using the new auth functions in my workflow since early November of last year and it is a great improvement, especially if you have the need to switch between authentication types.
+    
+### 2. New Auth Functions
+
+The new update brings a change to the authentication process with some new functions:
+
+      aw_auth()
+      aw_auth_with()
+      aw_auth_name()
+      aw_auth_path()
+There are a few options for setting session options that are going to be really helpful when creating automated workflows.  There is a two step process that lets you set a session option for which authentication type you want to use.  By using the function  `aw_auth_with('jwt')` you are setting your preferred method as `jwt` (alternatively `aw_auth_with('oauth')` sets the preferred method as `oauth`) and then you can use the function `aw_auth()` to authenticate, without having to define anything else. 
+
+In addition, you can also just include the value `jwt` or `oauth` in the `aw_auth()` function call like so: `aw_auth('jwt')`.  I usually end up doing that since I'm mainly working on analysis reports and not developing work streams that require more modular development.
+
+```{r, include=F}
+library(adobeanalyticsr)
+library(tidyverse)
+```
+
+
+```{r}
+aw_auth('jwt')
+# or
+aw_auth_with('jwt')
+aw_auth()
+```
+
+There are several big differences between these two types of authentication, more to come soon on what those are.
+
+### 3. Deprecating `aw_token()`
+
+Since we have a new function that handles the authentication process, we have added an end of life notice for the aw_token() function with a life-cycle warning.
+    
+This function still exists but has been superceded by `aw_auth()`.  While it **does not** require a change right now, I would encourage you to start changing over to the new authentication functions, even if you are still using OAuth. We have added a live-cycle warning to help remind users to do so.  
+    
+!['aw_token()' lifecycle warning](images/aw_token_endoflife.jpg){width=100%}
+
+### 4. New Segment Table Function
+
+We have also added a new function which returns one or multiple segments as dimensions and their corresponding metrics in each row.  The new function is `aw_segment_table()`. It mimics the output of `aw_freeform_table()` but doesn't support dimension breakdowns at this time.  It does however have a segment filter you can add so you are able to segment your segment report by another segment.  
+
+I think I get excited about most of these new features because of it creates an efficiency that can't be created outside of code.  
+
+Here is a sample process you can use to run the report.
+
+1. Get the Segments
+    
+```{r}
+#pull up to 1,000 segments from adobe
+segs <- aw_get_segments(limit = 1000, rsids = Sys.getenv('AW_REPORTSUITE_ID'))
+```
+
+2. Gather the Segment IDs
+
+This is a very simple example but I'm wanting to compare 'Mobile' and 'Desktop' visitors to the site.  To get the Id for these, I'm simply using the base `grepl()` function to pull back the Segment IDs. 
+```{r}
+mobilevisitors <- segs$id[grepl('Mobile Visitors', segs$name)]
+desktopvisitors <- segs$id[grepl('Desktop Visitors', segs$name)]
+
+segments <- c(mobilevisitors, desktopvisitors)
+```
+
+3. Pull the Segment Table
+
+Now I can use those 2 segments to pull my data for each segment in a table.
+```{r}
+df <- aw_segment_table(date_range = c('2021-11-01', '2021-12-31'),
+                       segmentIds = segments,
+                       metrics = c('visitors', 'visits', 'pageviews'))
+```
+```{r, echo=F}
+knitr::kable(df)
+```
+
+I'll definitely be writing more on the different ways you can utilize this functions but even the most basic use cases have already proven to be a huge benefit to my analysis workflows.
+
+If you have any questions or suggestions I would love to hear them.  Let me know in the comments or via [#MeasureSlack](https://www.measure.chat/).
+
+
+
