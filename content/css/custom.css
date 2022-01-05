@@ -2,3 +2,10 @@
 h3.homepagehero, h1.homepagehero {
     max-width: 580px;
 }}
+p.caption{
+    font-style: italic;
+    color: gray;
+    font-size: small;
+    text-align: right;
+    padding-right: 10px;
+}
