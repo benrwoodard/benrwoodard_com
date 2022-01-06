@@ -3,8 +3,8 @@ title: adobeanalyticsr v0.2.1 - What's New?
 author: Ben R Woodard
 date: '2022-01-03'
 slug: []
-categories: []
-tags: [adobe analytics, R]
+categories: [adobeanalyticsr]
+tags: [adobe analytics, R, adobeanaltyicsr]
 images: ['newpackage.jpg']
 authors: [benrwoodard]
 ---
