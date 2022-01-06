@@ -33,6 +33,7 @@ There are a few options for setting session options that are going to be really 
 In addition, you can also just include the value `jwt` or `oauth` in the `aw_auth()` function call like so: `aw_auth('jwt')`.  I usually end up doing that since I'm mainly working on analysis reports and not developing work streams that require more modular development.
 
 ```{r, include=F}
+#install.packages("adobeanalyticsr")
 library(adobeanalyticsr)
 library(tidyverse)
 ```
@@ -51,7 +52,7 @@ There are several big differences between these two types of authentication, mor
 
 Since we have a new function that handles the authentication process, we have added an end of life notice for the aw_token() function with a life-cycle warning.
     
-This function still exists but has been superceded by `aw_auth()`.  While it **does not** require a change right now, I would encourage you to start changing over to the new authentication functions, even if you are still using OAuth. We have added a live-cycle warning to help remind users to do so.  
+This function still exists but has been superseded by `aw_auth()`.  While it **does not** require a change right now, I would encourage you to start changing over to the new authentication functions, even if you are still using OAuth. We have added a live-cycle warning to help remind users to do so.  
     
 !['aw_token()' lifecycle warning](images/aw_token_endoflife.jpg){width=100%}
 

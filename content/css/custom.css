@@ -9,3 +9,12 @@ p.caption{
     text-align: right;
     padding-right: 10px;
 }
+.alignright{
+    text-align: right;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+.h1, h1 {
+    font-size: 2em;
+}

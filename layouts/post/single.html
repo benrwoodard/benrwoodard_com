@@ -4,34 +4,37 @@
     <div class="row">
         <div class="col">
             <article>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="meta text-muted mb-3">
-                            <p class="created text-muted text-uppercase font-weight-bold mb-1">{{ $page.Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</p>
-                            <span class="mr-2"><i class="fas fa-book-open mr-2"></i>{{ T "wordCount" $page.WordCount }}</span>
-                            <span><i class="fas fa-clock mr-2"></i>{{ T "readingTime" $page.ReadingTime }}</span>
-                        </div>
-
+                <div class="row mb-3">
+                    <div class="col-lg-4 px-2">
                         <h1>{{ $page.Title }}</h1>
-
-                        {{ partial "authors.html" $page }}
-                    </div>
-                </div>
-
+                    <!-- </div> -->
+                    <!-- <div class="col-lg-8"> -->
+                        <div class='container px-2'>
+                            <div class="meta text-muted mb-1">
+                                <p class="created text-muted mb-1">
+                                    {{ $page.Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</p>
+                                <span class="mr-2"><i class="fas fa-book-open mr-2"></i>{{ T "wordCount" $page.WordCount }}</span>
+                                <span><i class="fas fa-clock mr-2"></i>{{ T "readingTime" $page.ReadingTime }}</span>
+                            </div>
+                            <div class='meta text-muted mb-3'>
+                                {{ partial "authors.html" $page }}
+                            </div>
+                        </div>
+                    </div> 
                 {{- with $page.Params.images -}}
                     {{- $images := . -}}
                     {{- with $page.Site.GetPage "section" "images" -}}
                         {{- with .Resources.GetMatch (strings.TrimPrefix "/images/" (index $images 0)) -}}
                             {{- $image := .Fit "900x500" -}}
-                            <div class="row justify-content-center mb-3">
-                                <div class="col-lg-10">
+                            <!-- <div class="row justify-content-center mb-3"> -->
+                                <div class="col-lg-8">
                                     <img data-src="{{ $image.RelPermalink }}" class="img-fluid rounded mx-auto d-block" alt="{{ $page.Title }}">
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         {{- end -}}
                     {{- end -}}
                 {{- end -}}
-
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="content">
