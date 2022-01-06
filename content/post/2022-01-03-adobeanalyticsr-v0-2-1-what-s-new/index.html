@@ -30,17 +30,17 @@ authors: [benrwoodard]
 <p>There are a few options for setting session options that are going to be really helpful when creating automated workflows. There is a two step process that lets you set a session option for which authentication type you want to use. By using the function <code>aw_auth_with('jwt')</code> you are setting your preferred method as <code>jwt</code> (alternatively <code>aw_auth_with('oauth')</code> sets the preferred method as <code>oauth</code>) and then you can use the function <code>aw_auth()</code> to authenticate, without having to define anything else.</p>
 <p>In addition, you can also just include the value <code>jwt</code> or <code>oauth</code> in the <code>aw_auth()</code> function call like so: <code>aw_auth('jwt')</code>. I usually end up doing that since I’m mainly working on analysis reports and not developing work streams that require more modular development.</p>
 <pre class="r"><code>aw_auth(&#39;jwt&#39;)</code></pre>
-<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-06 14:54:13</code></pre>
+<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-07 02:09:01</code></pre>
 <pre class="r"><code># or
 aw_auth_with(&#39;jwt&#39;)
 aw_auth()</code></pre>
-<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-06 14:54:14</code></pre>
+<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-07 02:09:01</code></pre>
 <p>There are several big differences between these two types of authentication, more to come soon on what those are.</p>
 </div>
 <div id="deprecating-aw_token" class="section level3">
 <h3>3. Deprecating <code>aw_token()</code></h3>
 <p>Since we have a new function that handles the authentication process, we have added an end of life notice for the aw_token() function with a life-cycle warning.</p>
-<p>This function still exists but has been superceded by <code>aw_auth()</code>. While it <strong>does not</strong> require a change right now, I would encourage you to start changing over to the new authentication functions, even if you are still using OAuth. We have added a live-cycle warning to help remind users to do so.</p>
+<p>This function still exists but has been superseded by <code>aw_auth()</code>. While it <strong>does not</strong> require a change right now, I would encourage you to start changing over to the new authentication functions, even if you are still using OAuth. We have added a live-cycle warning to help remind users to do so.</p>
 <div class="figure">
 <img src="images/aw_token_endoflife.jpg" style="width:100.0%" alt="" />
 <p class="caption">‘aw_token()’ lifecycle warning</p>
