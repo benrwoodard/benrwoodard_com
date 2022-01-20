@@ -1,0 +1,141 @@
+---
+title: Generate A 74 Rule Segment In Seconds
+author: Ben R Woodard
+date: '2022-01-05'
+slug: []
+categories: [adobe analytics]
+tags: [adobe analytics, adobeanalyticsr, rvest, segments]
+images: [searchterms.jpg]
+authors: [Ben R Woodard]
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Here is the situation we find ourselves in. Our client, a <em>small</em> company in the North West United States named <strong>Apple</strong>, has asked us to identify all visits that have used a menu-item-name as a value in the search feature on the site. They want us to do a segmentation analysis between these users and all other users of the site.</p>
+<div class="figure">
+<img src="applenav.jpg" style="width:100.0%" alt="" />
+<p class="caption">Apple.com</p>
+</div>
+<p>We take a few minutes to look at the site and notice there are <strong>a lot</strong> of menu-item-names This is going to be a segment with a lot of rules. We quickly come up with an idea using R to scrape the site of all the menu-item-names and then create the segment using Adobe Analytics API v2.0.</p>
+<p>The R packages, <code>rvest</code> and <code>adobeanaltyicsr</code>, can be used in tandem to help us win the day and be <strong>the heroes</strong>, delivering an efficient solution to the client.</p>
+<p>Here are the steps to get this done:</p>
+<ol style="list-style-type: decimal">
+<li><a href="#first">Authenticate and load the packages</a></li>
+<li><a href="#second">Scrape the site to gather the search terms</a></li>
+<li><a href="#third">Create the segment rules (segment predicates)</a></li>
+<li><a href="#fourth">Build the segment</a></li>
+<li><a href="#fifth">Grab some coffee</a></li>
+</ol>
+<div id="first" class="section level2">
+<h2>1. Authenticate And Load the Packages</h2>
+<p>The client wants the products. Well you are familiar with the site enough to know that they have data attributes in the site elements. this should be enough of a start to get things going.</p>
+<p>Authenticating just got better in the new version of the <a href="https://adobeanalyticsr.com">adobeanalyticsr package</a>. Using the new JWT authentication process does not require you to login, like that of its brother authentication process, OAuth. This means you simply point the variables to the correct <code>private.key</code> file and you can start pulling data.</p>
+<p>Starting in[ <a href="/post/2022-01-03-adobeanalyticsr-v0-2-1-what-s-new/"><code>adobeanaltyicsr</code> v0.2.1</a> you can now use this function to authenticate.</p>
+<pre class="r"><code>aw_auth(&#39;jwt&#39;)</code></pre>
+<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-21 10:56:37</code></pre>
+</div>
+<div id="second" class="section level2">
+<h2>2. Scrape the site to gather the search terms.</h2>
+<p>It doesn’t take long of getting into the digital analyst role before you realize clients are usually lacking in the data they want you to use. This made up client is no different. While they want you to use the list of menu-item-names, they don’t have a list of the terms yet. This means you are going ot have to figure out a way of collecting them.</p>
+<p>We can use the <code>rvest</code> package to grab all the menu navigation links.</p>
+<pre class="r"><code>#identify the URL
+url &lt;- &#39;https://www.apple.com/&#39;
+
+#scrape all the &#39;data-analytics-title&#39; element attribute values
+searchterms &lt;- rvest::read_html(url) %&gt;%
+  rvest::html_elements(&#39;ul li a&#39;) %&gt;%
+  rvest::html_attr(&#39;data-analytics-title&#39;) %&gt;%
+  na.omit()
+#25 of the 74 terms
+head(searchterms, 25)</code></pre>
+<pre><code>##  [1] &quot;apple home&quot;    &quot;bag&quot;           &quot;apple home&quot;    &quot;store&quot;        
+##  [5] &quot;mac&quot;           &quot;ipad&quot;          &quot;iphone&quot;        &quot;watch&quot;        
+##  [9] &quot;airpods&quot;       &quot;tv and home&quot;   &quot;only on apple&quot; &quot;accessories&quot;  
+## [13] &quot;support&quot;       &quot;search&quot;        &quot;bag&quot;           &quot;store&quot;        
+## [17] &quot;mac&quot;           &quot;ipad&quot;          &quot;iphone&quot;        &quot;watch&quot;        
+## [21] &quot;airpods&quot;       &quot;tv and home&quot;   &quot;ipod touch&quot;    &quot;airtag&quot;       
+## [25] &quot;accessories&quot;</code></pre>
+<p>Well that was pretty simple. There may be some minor cleanup but overall we have what we are needing to create the segment rules. There are 74 search terms we will need to use in our segment.</p>
+</div>
+<div id="third" class="section level2">
+<h2>3. Create the segment rules</h2>
+<p>Now that we have the 74 search terms we needed we can get started on creating the segment. This will include any visits that have used any of these terms. Let’s make sure we have identified the key dimension that captures the search term used in searches on the site.</p>
+<p>First we need to pull the list of site dimensions using the <code>aw_get_dimensions()</code> function:</p>
+<pre class="r"><code>#Pull the dimensions
+dims &lt;- aw_get_dimensions()</code></pre>
+<p>Once we have that list we need to narrow down the 289 different dimensions to the one we are looking for. We know that our dimension includes the word “search” in it so we do a quick <code>filter</code> function and pass a <code>grepl</code> as the argument value to select all dimension names that include the word ‘search’.</p>
+<pre class="r"><code>#Filter the dimensions to find any that include the term &quot;
+dims %&gt;% 
+  filter(grepl(&#39;search&#39;, name, ignore.case = T)) %&gt;%
+  select(id, name, description)</code></pre>
+<pre><code>##                            id                     name
+## 1                  entryprop2 Entry Search Phrase (p2)
+## 2                       evar2       Search Phrase (v2)
+## 3                   exitprop2  Exit Search Phrase (p2)
+## 4                  paidsearch              Paid Search
+## 5                       prop2       Search Phrase (p2)
+## 6                searchengine            Search Engine
+## 7         searchenginekeyword           Search Keyword
+## 8    searchenginekeywordvisit   Search Keyword (Visit)
+## 9         searchenginenatural  Search Engine - Natural
+## 10 searchenginenaturalkeyword Search Keyword - Natural
+## 11       searchenginepagerank     All Search Page Rank
+## 12           searchenginepaid     Search Engine - Paid
+## 13    searchenginepaidkeyword    Search Keyword - Paid
+## 14          searchenginevisit    Search Engine (Visit)
+##                                           description
+## 1                     Search Parameter - Text Entered
+## 2  Search Parameter - What the user typed into search
+## 3                     Search Parameter - Text Entered
+## 4                                                &lt;NA&gt;
+## 5                     Search Parameter - Text Entered
+## 6                                                &lt;NA&gt;
+## 7                                                &lt;NA&gt;
+## 8                                                &lt;NA&gt;
+## 9                                                &lt;NA&gt;
+## 10                                               &lt;NA&gt;
+## 11                                               &lt;NA&gt;
+## 12                                               &lt;NA&gt;
+## 13                                               &lt;NA&gt;
+## 14                                               &lt;NA&gt;</code></pre>
+<p>Looks like we can choose <code>evar2</code> or <code>prop2.</code> Let’s go with <code>evar2</code>. Also, note that there is a “Search Keyword” dimension but we don’t want that because it is specific to Natural Search traffic.</p>
+<p>This has been a cause for confusion and actually one of the reasons for this article. A co-worker created a 125 keyword list segment but instead of using the “Search Term” dimension he used the “Search Keyword” dimension. After discovering the error he had to go back and recreate the segment definition, recreating all 125 different rules.</p>
+<p>So, now that we have identified <code>evar2</code> as the appropriate dimension we want to setup our function to create all our rules or, as we will call them, predicates.</p>
+<p>An adobe segment line item rule is really just a predicate. It contains a <code>subject</code>, <code>linking verb</code>, and <code>predicate nominative</code>. Our <code>predicate nominative</code> is the 74 menu-item-terms that we scraped from the site. We will use a <code>map()</code> function from the <code>purrr</code> package to apply each of the different keywords to the <code>seg_pred()</code> function.</p>
+<pre class="r"><code>#create the list of rules/predicates
+preds &lt;- purrr:::map(searchterms, function(x) {
+  adobeanalyticsr::seg_pred(subject = &#39;evar2&#39;, 
+                            verb = &#39;streq&#39;,
+                            object = x) 
+  })</code></pre>
+</div>
+<div id="fourth" class="section level2">
+<h2>4. Build the segment</h2>
+<p>Once we have the predicates built we can add them to the segment building function called <code>seg_build</code>. This function builds the JSON string needed for the API to then build a new segment.</p>
+<p>Using the API forces us to be more intentional when creating a segment. We must include a <code>name</code> and <code>description</code> for each segment. Taking a little time to consider a good name and description for the segment will go a long way in using that segment in the intended reports and analyses of the future.</p>
+<p>We also must include the <code>context</code> and <code>conjunction</code>. Remember that our client was asking about the ‘visits’ not ‘visitors’ or ‘hits’. In addition, they wanted to group any visit that included any of the terms. These two simple arguments are very important when considering what conclusions can be drawn from the data.</p>
+<p>Finally, we have the <code>predicates</code> argument. This is a ‘list’ of rules that we created using the previous function.</p>
+<p>The response gives us the confirmation that we need to use the segment id in our future API calls.</p>
+<pre class="r"><code>#build the segments with the list of predicates created
+res &lt;- adobeanalyticsr::seg_build(name = &#39;Apple Search Term Segment&#39;,
+                                  description = &#39;This segment includes a list of 74 search terms we want to see if users use as a search value&#39;,
+                                  context = &#39;visits&#39;,
+                                  conjunction = &#39;or&#39;,
+                                  predicates = preds,)
+
+#the result will show the id and other information
+res</code></pre>
+<pre><code>## # A tibble: 1 × 6
+##   name                      description     id      isPostShardId rsid  owner.id
+##   &lt;chr&gt;                     &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   
+## 1 Apple Search Term Segment This segment i… s30000… TRUE          ageo… 2004064…</code></pre>
+<p>Once completed we will have the final segment built and ready to be used.</p>
+<p><img src="searchterms.jpg" style="width:100.0%" alt="Final Segment" />
+<em>It’s hard for me to show the whole segment because it has 74 unique rules but this is a screenshot of the top 9 rules.</em></p>
+</div>
+<div id="fifth" class="section level2">
+<h2>5. Grab some coffee</h2>
+<p>While this is a made up story, it is based on a true example of how we have been able to use the Adobe Analytics API v2.0 to help cut development time and build efficiency into our workflows. In addition, using the API enables us to keep the naming conventions consistent across the different segments we create for a specific project.</p>
+<p>There is still more development needed before the segment build function will be moved from the development version of adobeanalyticsr but if you have a segment building use case and would like some help in getting the solution, don’t hesitate to reach out!</p>
+</div>
