@@ -17,15 +17,21 @@ menu:
     - identifier: categories
       name: Categories
       url: /categories
-      weight: 3
+      weight: 4
     - identifier: about
       name: About
       url: /about/
-      weight: 4
-    - identifier: adobeanalyticsr
+      weight: 5
+    - parent: packages
+      identifier: adobeanalyticsr
       name: adobeanalyticsr
       url: https://adobeanalyticsr.com
       weight: 2
+    - parent: packages    
+      identifier: statsearchanalyticsr
+      name: statsearchanalyticsr
+      url: https://statsearchanalyticsr.com
+      weight: 3
 taxonomies:
   author: authors
   category: categories
