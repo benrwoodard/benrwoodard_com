@@ -33,7 +33,7 @@ authors: [Ben R Woodard]
 <p>Authenticating just got better in the new version of the <a href="https://adobeanalyticsr.com">adobeanalyticsr package</a>. Using the new JWT authentication process does not require you to login, like that of its brother authentication process, OAuth. This means you simply point the variables to the correct <code>private.key</code> file and you can start pulling data.</p>
 <p>Starting in[ <a href="/post/2022-01-03-adobeanalyticsr-v0-2-1-what-s-new/"><code>adobeanaltyicsr</code> v0.2.1</a> you can now use this function to authenticate.</p>
 <pre class="r"><code>aw_auth(&#39;jwt&#39;)</code></pre>
-<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-21 10:56:37</code></pre>
+<pre><code>## Successfully authenticated with JWT: access token valid until 2022-01-21 11:11:52</code></pre>
 </div>
 <div id="second" class="section level2">
 <h2>2. Scrape the site to gather the search terms.</h2>
@@ -66,39 +66,96 @@ head(searchterms, 25)</code></pre>
 dims &lt;- aw_get_dimensions()</code></pre>
 <p>Once we have that list we need to narrow down the 289 different dimensions to the one we are looking for. We know that our dimension includes the word “search” in it so we do a quick <code>filter</code> function and pass a <code>grepl</code> as the argument value to select all dimension names that include the word ‘search’.</p>
 <pre class="r"><code>#Filter the dimensions to find any that include the term &quot;
-dims %&gt;% 
+knitr::kable(dims %&gt;% 
   filter(grepl(&#39;search&#39;, name, ignore.case = T)) %&gt;%
-  select(id, name, description)</code></pre>
-<pre><code>##                            id                     name
-## 1                  entryprop2 Entry Search Phrase (p2)
-## 2                       evar2       Search Phrase (v2)
-## 3                   exitprop2  Exit Search Phrase (p2)
-## 4                  paidsearch              Paid Search
-## 5                       prop2       Search Phrase (p2)
-## 6                searchengine            Search Engine
-## 7         searchenginekeyword           Search Keyword
-## 8    searchenginekeywordvisit   Search Keyword (Visit)
-## 9         searchenginenatural  Search Engine - Natural
-## 10 searchenginenaturalkeyword Search Keyword - Natural
-## 11       searchenginepagerank     All Search Page Rank
-## 12           searchenginepaid     Search Engine - Paid
-## 13    searchenginepaidkeyword    Search Keyword - Paid
-## 14          searchenginevisit    Search Engine (Visit)
-##                                           description
-## 1                     Search Parameter - Text Entered
-## 2  Search Parameter - What the user typed into search
-## 3                     Search Parameter - Text Entered
-## 4                                                &lt;NA&gt;
-## 5                     Search Parameter - Text Entered
-## 6                                                &lt;NA&gt;
-## 7                                                &lt;NA&gt;
-## 8                                                &lt;NA&gt;
-## 9                                                &lt;NA&gt;
-## 10                                               &lt;NA&gt;
-## 11                                               &lt;NA&gt;
-## 12                                               &lt;NA&gt;
-## 13                                               &lt;NA&gt;
-## 14                                               &lt;NA&gt;</code></pre>
+  select(id, name, description)
+)</code></pre>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="24%" />
+<col width="49%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">entryprop2</td>
+<td align="left">Entry Search Phrase (p2)</td>
+<td align="left">Search Parameter - Text Entered</td>
+</tr>
+<tr class="even">
+<td align="left">evar2</td>
+<td align="left">Search Phrase (v2)</td>
+<td align="left">Search Parameter - What the user typed into search</td>
+</tr>
+<tr class="odd">
+<td align="left">exitprop2</td>
+<td align="left">Exit Search Phrase (p2)</td>
+<td align="left">Search Parameter - Text Entered</td>
+</tr>
+<tr class="even">
+<td align="left">paidsearch</td>
+<td align="left">Paid Search</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">prop2</td>
+<td align="left">Search Phrase (p2)</td>
+<td align="left">Search Parameter - Text Entered</td>
+</tr>
+<tr class="even">
+<td align="left">searchengine</td>
+<td align="left">Search Engine</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">searchenginekeyword</td>
+<td align="left">Search Keyword</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">searchenginekeywordvisit</td>
+<td align="left">Search Keyword (Visit)</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">searchenginenatural</td>
+<td align="left">Search Engine - Natural</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">searchenginenaturalkeyword</td>
+<td align="left">Search Keyword - Natural</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">searchenginepagerank</td>
+<td align="left">All Search Page Rank</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">searchenginepaid</td>
+<td align="left">Search Engine - Paid</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">searchenginepaidkeyword</td>
+<td align="left">Search Keyword - Paid</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">searchenginevisit</td>
+<td align="left">Search Engine (Visit)</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
 <p>Looks like we can choose <code>evar2</code> or <code>prop2.</code> Let’s go with <code>evar2</code>. Also, note that there is a “Search Keyword” dimension but we don’t want that because it is specific to Natural Search traffic.</p>
 <p>This has been a cause for confusion and actually one of the reasons for this article. A co-worker created a 125 keyword list segment but instead of using the “Search Term” dimension he used the “Search Keyword” dimension. After discovering the error he had to go back and recreate the segment definition, recreating all 125 different rules.</p>
 <p>So, now that we have identified <code>evar2</code> as the appropriate dimension we want to setup our function to create all our rules or, as we will call them, predicates.</p>

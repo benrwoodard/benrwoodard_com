@@ -22,13 +22,11 @@ menu:
       name: About
       url: /about/
       weight: 5
-    - parent: packages
-      identifier: adobeanalyticsr
+    - identifier: adobeanalyticsr
       name: adobeanalyticsr
       url: https://adobeanalyticsr.com
       weight: 2
-    - parent: packages    
-      identifier: statsearchanalyticsr
+    - identifier: statsearchanalyticsr
       name: statsearchanalyticsr
       url: https://statsearchanalyticsr.com
       weight: 3

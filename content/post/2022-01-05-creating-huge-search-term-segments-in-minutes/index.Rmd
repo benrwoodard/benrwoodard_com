@@ -80,9 +80,10 @@ Once we have that list we need to narrow down the `r nrow(dims)` different dimen
 
 ```{r}
 #Filter the dimensions to find any that include the term "
-dims %>% 
+knitr::kable(dims %>% 
   filter(grepl('search', name, ignore.case = T)) %>%
   select(id, name, description)
+)
 ```
 
 Looks like we can choose `evar2` or `prop2.`  Let's go with `evar2`.  Also, note that there is a "Search Keyword" dimension but we don't want that because it is specific to Natural Search traffic.  
