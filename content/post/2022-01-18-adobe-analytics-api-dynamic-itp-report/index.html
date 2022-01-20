@@ -16,7 +16,7 @@ authors: [Ben R Woodard]
 <div id="setup-for-the-itp-impact-report" class="section level2">
 <h2>Setup for the ITP impact report</h2>
 <p>The first setup step is identifying the report suite you are going to be using for the report. This can be as easily as looking in the admin for Adobe Analytics or running the <code>aw_get_reportsuites()</code> function in adobeanalyticsr. Either way, this step should be fairly simple.</p>
-<p>The second step is usually done through training and reviews but when using code we can generate visuals that more consistently aligned with our expectations. While visuals are still customized for each report, this type of code based deliverable enable us to include visualization best practices into all of our reports and presentations.</p>
+<p>The second step is usually done through training and reviews but when using code we can generate visuals that more consistently aligned with our expectations. While visuals are still customized for each report, this type of code based deliverable enables us to include visualization best practices into all of our reports and presentations.</p>
 <p>Finally, the last step of our setup process is creating the segments and calculated metrics. Historically, we have needed to go into a report suite and create these elements. There were problems with consistent naming conventions and other user errors due to having so many ‘touch points’ in that process. By using the API we have been able to streamline this step in the setup process. It is now a single function that first checks for existing segments with the same name in the account and then builds them if they do not exist.</p>
 <p>The power of this report is in the ability to automate the segment creation process and then pull data according to each segment without ever having to log into the user interface. Since the segment definitions use basic dimensions and metrics, there is no need to customize these dimensions across report suite.</p>
 <pre class="r"><code>#Define the ReportSuite to be used
@@ -146,8 +146,9 @@ ninetydays %&gt;%
 <li>Do we see seasonality trends?</li>
 </ul>
 <p>It also should inform whether or not we will expect changes going forward for volume of Best and Worst Case visits.</p>
-<div id="pull-the-data" class="section level3">
-<h3>Pull the data</h3>
+<ol style="list-style-type: decimal">
+<li>Pull the data</li>
+</ol>
 <p>Because we want the best look-back window possible we start by defining how many days March 1, 2020 was from today. This number will be used in the function argument <code>date_range</code> to make sure we include much of 2020 without having to do much additional math. We could add the data in the character form, ‘2020-04-01’, but then we would have to define today’s date in the same character format in order for the <code>c()</code> function to send in the date range correctly. It’s easier to define the days since today and then just subtract it from today’s date.</p>
 <pre class="r"><code>#determine the number of days to subtract from today
 dayssince200401 &lt;- as.numeric(Sys.Date()-1 - as.Date(&#39;2020-04-01&#39;))
@@ -169,15 +170,14 @@ worst.12months &lt;- aw_freeform_table(rsid = rsid,
                                       metrics = c(&#39;visits&#39;),
                                       segmentId = worst_seg) %&gt;%
                     mutate(type = &#39;worst.case&#39;)</code></pre>
-</div>
-<div id="bind-the-rows" class="section level3">
-<h3>Bind the rows</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>Bind the rows</li>
+</ol>
 <pre class="r"><code>## bind the data sets together
 twelvemonths &lt;- rbind(best.12months, worst.12months, all.12months)</code></pre>
-</div>
-</div>
-<div id="get-additional-data-points" class="section level2">
-<h2>Get additional data points</h2>
+<ol start="3" style="list-style-type: decimal">
+<li>Get additional data points</li>
+</ol>
 <ul>
 <li>As in the previous section, we need to do a little data wrangling to get additional points of information.</li>
 </ul>
@@ -201,8 +201,9 @@ annotation_location &lt;- twelvemonths %&gt;%
   mutate(bestcase_prop = round(best.case/all.visits, digits = 2),
          worstcase_prop = round(worst.case/all.visits, digits = 2)) %&gt;%
   select(date, bestcase_prop, worstcase_prop)</code></pre>
-<div id="visualize-the-longer-trended-data" class="section level3">
-<h3>Visualize the longer trended data</h3>
+<ol start="4" style="list-style-type: decimal">
+<li>Visualize the longer trended data</li>
+</ol>
 <pre class="r"><code>twelvemonths %&gt;%
   pivot_wider(names_from = type, values_from = visits) %&gt;%
   mutate(bestcase_prop = round(best.case/all.visits, digits = 2),
@@ -245,12 +246,12 @@ annotation_location &lt;- twelvemonths %&gt;%
        caption = glue::glue(&#39;Data Source: reportsuite *rsid*&#39;)) </code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
-</div>
 <div id="example-of-itp-analytics-impact" class="section level2">
 <h2>Example of ITP Analytics Impact</h2>
-<p>This final visual takes the percentage of returning after 7 day visits before and after the date ITP was implemented on November 5th, 2020.</p>
-<div id="pull-the-data-1" class="section level3">
-<h3>Pull the data</h3>
+<p>This final visual takes the percentage of returning after 7 day visits before and after the date ITP was implemented on November 5th, 2020. It is used to illustrate of one of the impacts of ITP on reporting.</p>
+<ol style="list-style-type: decimal">
+<li>Pull the data</li>
+</ol>
 <pre class="r"><code>dr = c(as.Date(&#39;2020-05-01&#39;), Sys.Date()-1)
 all.prev12 &lt;- aw_freeform_table(rsid = rsid,
                                 date_range = dr,
@@ -277,24 +278,24 @@ worst.prev12 &lt;- aw_freeform_table(rsid = rsid,
                                    prettynames = F) %&gt;%
   mutate(type = &#39;worst.case&#39;) %&gt;% 
   dplyr::rename(visits7days = 3)</code></pre>
-</div>
-<div id="bind-the-data" class="section level3">
-<h3>Bind the data</h3>
+<ol start="2" style="list-style-type: decimal">
+<li>Bind the data</li>
+</ol>
 <pre class="r"><code>prev12 &lt;- rbind(best.prev12, worst.prev12, all.prev12)</code></pre>
-</div>
-<div id="transform-the-data" class="section level3">
-<h3>Transform the data</h3>
+<ol start="3" style="list-style-type: decimal">
+<li>Transform the data</li>
+</ol>
 <ul>
-<li>The biggest change is categorizing the date as being ‘after’ or ‘before’ the ITP changes.</li>
+<li>The biggest change in this step over the previous tranformation steps is categorizing the date as being ‘after’ or ‘before’ the ITP changes.</li>
 </ul>
 <pre class="r"><code>prev12 &lt;- prev12 %&gt;%
   mutate(date = lubridate::my(daterangemonth)) 
 
 avg7dayreturns &lt;- prev12 %&gt;%
   mutate(sinceitp = if_else(date &gt; as.Date(&#39;2020-10-31&#39;), &#39;After&#39;, &#39;Before&#39;))</code></pre>
-</div>
-<div id="visualize-the-data" class="section level3">
-<h3>Visualize the data</h3>
+<ol start="4" style="list-style-type: decimal">
+<li>Visualize the data</li>
+</ol>
 <pre class="r"><code>avg7dayreturns %&gt;%
   mutate(type = case_when(type == &#39;all.visits&#39; ~ &#39;All Visits&#39;, 
                           type == &#39;best.case&#39; ~ &#39;Recent Apple OS&#39;,
@@ -318,5 +319,4 @@ avg7dayreturns &lt;- prev12 %&gt;%
        caption = glue::glue(&#39;ITP Change: Nov. 5, 2020 \n Data Source: reportsuite *rsid*&#39;))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="768" /></p>
 <p>Using this framework creates the images but most importantly, enables the analyst to quickly add in-line commentary and recommendations to the final deliverable.</p>
-</div>
 </div>

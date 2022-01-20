@@ -32,7 +32,7 @@ aw_auth('oauth')
 
 The first setup step is identifying the report suite you are going to be using for the report.  This can be as easily as looking in the admin for Adobe Analytics or running the `aw_get_reportsuites()` function in adobeanalyticsr.  Either way, this step should be fairly simple.  
 
-The second step is usually done through training and reviews but when using code we can generate visuals that more consistently aligned with our expectations.  While visuals are still customized for each report, this type of code based deliverable enable us to include visualization best practices into all of our reports and presentations.
+The second step is usually done through training and reviews but when using code we can generate visuals that more consistently aligned with our expectations.  While visuals are still customized for each report, this type of code based deliverable enables us to include visualization best practices into all of our reports and presentations.
 
 Finally, the last step of our setup process is creating the segments and calculated metrics. Historically, we have needed to go into a report suite and create these elements. There were problems with consistent naming conventions and other user errors due to having so many 'touch points' in that process. By using the API we have been able to streamline this step in the setup process. It is now a single function that first checks for existing segments with the same name in the account and then builds them if they do not exist. 
 
@@ -170,7 +170,7 @@ This next visual gives a larger look-back window and summarizes it by month as o
   
 It also should inform whether or not we will expect changes going forward for volume of Best and Worst Case visits.
 
-### Pull the data
+1. Pull the data
 
 Because we want the best look-back window possible we start by defining how many days March 1, 2020 was from today.  This number will be used in the function argument `date_range` to make sure we include much of 2020 without having to do much additional math. We could add the data in the character form, '2020-04-01', but then we would have to define today's date in the same character format in order for the `c()` function to send in the date range correctly.  It's easier to define the days since today and then just subtract it from today's date. 
 
@@ -197,13 +197,13 @@ worst.12months <- aw_freeform_table(rsid = rsid,
                     mutate(type = 'worst.case')
 ```
 
-### Bind the rows 
+2. Bind the rows 
 ```{r fig.asp=.45}
 ## bind the data sets together
 twelvemonths <- rbind(best.12months, worst.12months, all.12months)
 ```
 
-## Get additional data points
+3. Get additional data points
 
 - As in the previous section, we need to do a little data wrangling to get additional points of information.
 ```{r fig.asp=.45}
@@ -229,7 +229,7 @@ annotation_location <- twelvemonths %>%
   select(date, bestcase_prop, worstcase_prop)
 ```
 
-### Visualize the longer trended data
+4. Visualize the longer trended data
 ```{r fig.asp=.45}
 twelvemonths %>%
   pivot_wider(names_from = type, values_from = visits) %>%
@@ -275,9 +275,9 @@ twelvemonths %>%
 
 ## Example of ITP Analytics Impact
 
-This final visual takes the percentage of returning after 7 day visits before and after the date ITP was implemented on November 5th, 2020. 
+This final visual takes the percentage of returning after 7 day visits before and after the date ITP was implemented on November 5th, 2020. It is used to illustrate of one of the impacts of ITP on reporting.
 
-### Pull the data
+1. Pull the data
 
 ```{r, fig.asp=.35, fig.width=8}
 dr = c(as.Date('2020-05-01'), Sys.Date()-1)
@@ -308,14 +308,14 @@ worst.prev12 <- aw_freeform_table(rsid = rsid,
   dplyr::rename(visits7days = 3)
 ```
 
-### Bind the data
+2. Bind the data
 ```{r, fig.asp=.35, fig.width=8}
 prev12 <- rbind(best.prev12, worst.prev12, all.prev12)
 ```
 
-### Transform the data
+3. Transform the data
 
-- The biggest change is categorizing the date as being 'after' or 'before' the ITP changes. 
+- The biggest change in this step over the previous tranformation steps is categorizing the date as being 'after' or 'before' the ITP changes. 
 ```{r, fig.asp=.35, fig.width=8}
 prev12 <- prev12 %>%
   mutate(date = lubridate::my(daterangemonth)) 
@@ -324,7 +324,7 @@ avg7dayreturns <- prev12 %>%
   mutate(sinceitp = if_else(date > as.Date('2020-10-31'), 'After', 'Before'))
 ```
 
-### Visualize the data
+4. Visualize the data
 ```{r, fig.asp=.35, fig.width=8}
 avg7dayreturns %>%
   mutate(type = case_when(type == 'all.visits' ~ 'All Visits', 
