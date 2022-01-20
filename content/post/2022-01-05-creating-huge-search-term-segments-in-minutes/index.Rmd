@@ -121,7 +121,7 @@ res <- adobeanalyticsr::seg_build(name = 'Apple Search Term Segment',
                                   description = 'This segment includes a list of 74 search terms we want to see if users use as a search value',
                                   context = 'visits',
                                   conjunction = 'or',
-                                  predicates = preds,)
+                                  predicates = preds)
 
 #the result will show the id and other information
 res
