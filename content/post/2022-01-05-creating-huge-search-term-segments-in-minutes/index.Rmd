@@ -39,7 +39,7 @@ library(adobeanalyticsr)
 
 Authenticating just got better in the new version of the [adobeanalyticsr package](https://adobeanalyticsr.com).  Using the new JWT authentication process does not require you to login, like that of its brother authentication process, OAuth. This means you simply point the variables to the correct `private.key` file and you can start pulling data.  
 
-Starting in[ [`adobeanaltyicsr` v0.2.1](/post/2022-01-03-adobeanalyticsr-v0-2-1-what-s-new/) you can now use this function to authenticate.
+Starting in [`adobeanaltyicsr` v0.2.1](/post/2022-01-03-adobeanalyticsr-v0-2-1-what-s-new/) you can now use this function to authenticate.
 
 ```{r authenticate, warning=FALSE, echo=TRUE, message=TRUE, include=TRUE}
 aw_auth('oauth')
