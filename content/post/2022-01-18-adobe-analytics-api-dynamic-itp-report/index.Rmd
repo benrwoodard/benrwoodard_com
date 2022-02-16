@@ -315,7 +315,7 @@ prev12 <- rbind(best.prev12, worst.prev12, all.prev12)
 
 3. Transform the data
 
-- The biggest change in this step over the previous tranformation steps is categorizing the date as being 'after' or 'before' the ITP changes. 
+- The biggest change in this step over the previous transformation steps is categorizing the date as being 'after' or 'before' the ITP changes. 
 ```{r, fig.asp=.35, fig.width=8}
 prev12 <- prev12 %>%
   mutate(date = lubridate::my(daterangemonth)) 

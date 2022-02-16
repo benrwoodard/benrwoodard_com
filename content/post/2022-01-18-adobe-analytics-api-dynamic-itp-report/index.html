@@ -286,7 +286,7 @@ worst.prev12 &lt;- aw_freeform_table(rsid = rsid,
 <li>Transform the data</li>
 </ol>
 <ul>
-<li>The biggest change in this step over the previous tranformation steps is categorizing the date as being ‘after’ or ‘before’ the ITP changes.</li>
+<li>The biggest change in this step over the previous transformation steps is categorizing the date as being ‘after’ or ‘before’ the ITP changes.</li>
 </ul>
 <pre class="r"><code>prev12 &lt;- prev12 %&gt;%
   mutate(date = lubridate::my(daterangemonth)) 

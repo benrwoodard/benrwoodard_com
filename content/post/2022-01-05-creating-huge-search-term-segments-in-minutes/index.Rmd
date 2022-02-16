@@ -42,7 +42,7 @@ Authenticating just got better in the new version of the [adobeanalyticsr packag
 Starting in[ [`adobeanaltyicsr` v0.2.1](/post/2022-01-03-adobeanalyticsr-v0-2-1-what-s-new/) you can now use this function to authenticate.
 
 ```{r authenticate, warning=FALSE, echo=TRUE, message=TRUE, include=TRUE}
-aw_auth('jwt')
+aw_auth('oauth')
 ```
 
 ## 2. Scrape the site to gather the search terms. {#second}
@@ -79,7 +79,7 @@ dims <- aw_get_dimensions()
 Once we have that list we need to narrow down the `r nrow(dims)` different dimensions to the one we are looking for. We know that our dimension includes the word "search" in it so we do a quick `filter` function and pass a `grepl` as the argument value to select all dimension names that include the word 'search'.
 
 ```{r}
-#Filter the dimensions to find any that include the term "
+#Filter the dimensions to find any that include the term "search"
 knitr::kable(dims %>% 
   filter(grepl('search', name, ignore.case = T)) %>%
   select(id, name, description)
@@ -92,15 +92,20 @@ This has been a cause for confusion and actually one of the reasons for this art
 
 So, now that we have identified `evar2` as the appropriate dimension we want to setup our function to create all our rules or, as we will call them, predicates.
 
-An adobe segment line item rule is really just a predicate. It contains a `subject`, `linking verb`, and `predicate nominative`.  Our `predicate nominative` is the 74 menu-item-terms that we scraped from the site.  We will use a `map()` function from the `purrr` package to apply each of the different keywords to the `seg_pred()` function.
+An adobe segment line item rule is really just a predicate. It contains a `subject`, `linking verb`, and `predicate nominative`.  Our `predicate nominative` is the 74 menu-item-terms that we scraped from the site.  We will use a `map()` function from the `purrr` package to apply each of the different keywords to the `seg_rule()` function.
+
+The great part of the Adobe segment builder tool/API is that we can either collect all these into a comma delimited list along with the "eq-any-of" or "contains-any-of" verbs or we can create each rule separately. We are choosing her to create each one individually. 
 
 ```{r}
 #create the list of rules/predicates
 preds <- purrr:::map(searchterms, function(x) {
-  adobeanalyticsr::seg_pred(subject = 'evar2', 
+  adobeanalyticsr::seg_rule(dimension = 'evar2', 
                             verb = 'streq',
-                            object = x) 
+                            object = x,
+                            validate = F) 
   })
+
+
 ```
 
 ## 4. Build the segment {#fourth}
