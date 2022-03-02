@@ -42,7 +42,7 @@ Authenticating just got better in the new version of the [adobeanalyticsr packag
 Starting in [`adobeanaltyicsr` v0.2.1](/post/2022-01-03-adobeanalyticsr-v0-2-1-what-s-new/) you can now use this function to authenticate.
 
 ```{r authenticate, warning=FALSE, echo=TRUE, message=TRUE, include=TRUE}
-aw_auth('oauth')
+aw_auth('jwt')
 ```
 
 ## 2. Scrape the site to gather the search terms. {#second}
@@ -92,13 +92,13 @@ This has been a cause for confusion and actually one of the reasons for this art
 
 So, now that we have identified `evar2` as the appropriate dimension we want to setup our function to create all our rules or, as we will call them, predicates.
 
-An adobe segment line item rule is really just a predicate. It contains a `subject`, `linking verb`, and `predicate nominative`.  Our `predicate nominative` is the 74 menu-item-terms that we scraped from the site.  We will use a `map()` function from the `purrr` package to apply each of the different keywords to the `seg_rule()` function.
+An adobe segment line item rule is really just a predicate. It contains a `subject`, `linking verb`, and `predicate nominative`.  Our `predicate nominative` is the 74 menu-item-terms that we scraped from the site.  We will use a `map()` function from the `purrr` package to apply each of the different keywords to the `seg_rule()` function which was introduced in version 0.3.0 of `adobeanalyticsr`.
 
-The great part of the Adobe segment builder tool/API is that we can either collect all these into a comma delimited list along with the "eq-any-of" or "contains-any-of" verbs or we can create each rule separately. We are choosing her to create each one individually. 
+The great part of the Adobe segment builder tool/API is that we can either collect all these into a comma delimited list along with the "eq-any-of" or "contains-any-of" verbs or we can create each rule separately. We are choosing here to create each one individually. 
 
 ```{r}
 #create the list of rules/predicates
-preds <- purrr:::map(searchterms, function(x) {
+rules_list <- purrr:::map(searchterms, function(x) {
   adobeanalyticsr::seg_rule(dimension = 'evar2', 
                             verb = 'streq',
                             object = x,
@@ -116,9 +116,9 @@ Using the API forces us to be more intentional when creating a segment.  We must
 
 We also must include the `context` and `conjunction`.  Remember that our client was asking about the 'visits' not 'visitors' or 'hits'.  In addition, they wanted to group any visit that included any of the terms. These two simple arguments are very important when considering what conclusions can be drawn from the data.  
 
-Finally, we have the `predicates` argument. This is a 'list' of rules that we created using the previous function. 
+Finally, we have the `rules` argument. This is a 'list' of rules that we created using the previous function. 
 
-The response gives us the confirmation that we need to use the segment id in our future API calls.  
+If we create the segment in Adobe Analytics by using the argument `create_seg=TRUE` then the response will gives us the segment id which we will use in our future API calls.  
 
 ```{r}
 #build the segments with the list of predicates created
@@ -126,10 +126,11 @@ res <- adobeanalyticsr::seg_build(name = 'Apple Search Term Segment',
                                   description = 'This segment includes a list of 74 search terms we want to see if users use as a search value',
                                   context = 'visits',
                                   conjunction = 'or',
-                                  predicates = preds)
+                                  rules = rules_list,
+                                  create_seg = FALSE)
 
-#the result will show the id and other information
-res
+#
+seg_val(res)
 ```
 
 Once completed we will have the final segment built and ready to be used. 

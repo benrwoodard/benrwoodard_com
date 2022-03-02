@@ -20,7 +20,7 @@ Thankfully, everything the UI does is built on "Adobe Analytics API v2.0". The g
 
 __Let's get going!__
  
-If needed, install the package. The latest version (v0.3.0) includes the segment building functionality we are presenting here.
+If needed, install the package. The latest version (v0.3.0) includes the segment building functionality I am presenting here.
 ```{r}
 #install.packages('adobeanalyticsr')
 ```
@@ -36,7 +36,7 @@ The Adobe Analytics API v2.0 has two ways to authenticate and `adobeanalyticsr` 
 aw_auth('jwt')
 ```
 
-Next, we will need to define the report suite that we are going to be using as the validation for our new segment. While segments can be used in multiple report suites across your Adobe Analytics account, it is important to use the appropriate base report suite for validation purposes. *(Note: You do have to have access to this report suite via your authentication.)*
+Next, I will need to define the report suite that I am going to be using as the validation for our new segment. While segments can be used in multiple report suites across your Adobe Analytics account, it is important to use the appropriate base report suite for validation purposes. *(Note: You do have to have access to this report suite via your authentication.)*
 ```{r}
 rsid <- 'ageo1xxpnwsdi2020prod'
 ```
@@ -80,7 +80,7 @@ The `rule1` object is a list item that will be turned turned a JSON string to be
 jsonlite::toJSON(rule1, pretty = T, auto_unbox = T)
 ```
 
-In this example we want to add another rule to help define the scope of our segment.  The next rule limits the visits to be on January 25, 2022.  
+In this example I want to add another rule to help define the limitation of our segment.  The next rule limits the visits to be on January 25, 2022.  
 ```{r}
 rule2 <- seg_rule(dimension = 'daterangeday',
                   verb = 'eq',
@@ -95,10 +95,10 @@ rule3 <- seg_rule(dimension = 'mobiledevicetype',
                   object = 2163986270)
 ```
 
->**Note:** There are some quirks to the API that we are still trying to figure out.  One of these is represented in this example.  While the UI is clearly a list of mobile device types such as "Mobile Phone", the API is actually needing a number. That is why we are using the numeric "eq" verb with a dimension. I only include this example to point out the fact that this process of building segments using code is valuable but there is a learning curve. Most of the time you will not have any problems at all but there are some that may require you to do a bit of research to get it right using the API.
+>**Note:** There are some quirks to the API that I am still trying to figure out.  One of these is represented in this example.  While the UI is clearly a list of mobile device types such as "Mobile Phone", the API is actually needing a number. That is why I am using the numeric "eq" verb with a dimension. I only include this example to point out the fact that this process of building segments using code is valuable but there is a learning curve. Most of the time you will not have any problems at all but there are some circumstances that may require you to do a bit of research to get it right using the API.
 
 ## Create the Container
-Every segment has at least one container. Adding an additional container to the main container is only needed if you are using a different "conjunction" between then. Here we are creating a "visit" context container using "rule1" and "rule2" and using the conjunction "and". This will result in a segment that includes visits where both rules are **true**.
+Every segment has at least one container. Adding an additional container to the main container is only needed if you are using a different "conjunction" between then. Here I am creating a "visit" context container using "rule1" and "rule2" and using the conjunction "and". This will result in a segment that includes visits where both rules are **true**.
 
 ```{r}
 container1 <- seg_con(context = 'visits',
@@ -111,7 +111,7 @@ container1 <- seg_con(context = 'visits',
 
 Now that we have the rules and containers defined we need to build the segment using the `seg_build()` function.  By default, this will return a JSON string that can then be validated using the `seg_val()` function but you are able to change the argument "create_seg" to TRUE and it will create the segment in the UI and return the segment id which can then be used in your other API calls.
 
-In the following example the segment name is "Home Page visits" and the description is "All visits that include a page named 'Home'".  We are using the "containers" argument because we have at least one container to be included in our segment. If we were just using rules then we would use the "rules" argument. 
+In the following example the segment name is "Home Page visits" and the description is "All visits that include a page named 'Home'".  I am using the "containers" argument because we have at least one container to be included in our segment. If we were just using rules then we would use the "rules" argument. 
 
 ```{r}
 built <- seg_build(name = "Home Page visits",

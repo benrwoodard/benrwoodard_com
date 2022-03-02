@@ -45,15 +45,15 @@ authors: [Ben R Woodard]
 <p>Since all good data analysis includes a repeatable process, it is important to have a way to code segments into your analysis workflow. The new set of segment building functions in the newest version of <code>adobeanalyticsr</code> enables that very thing.</p>
 <p>Thankfully, everything the UI does is built on “Adobe Analytics API v2.0”. The goal of this article is to show a basic example to help get get you started.</p>
 <p><strong>Let’s get going!</strong></p>
-<p>If needed, install the package. The latest version (v0.3.0) includes the segment building functionality we are presenting here.</p>
+<p>If needed, install the package. The latest version (v0.3.0) includes the segment building functionality I am presenting here.</p>
 <pre class="r"><code>#install.packages(&#39;adobeanalyticsr&#39;)</code></pre>
 <p>Once the package is installed in your library it is essential to load the package into your working session by using the <code>library()</code> function.</p>
 <pre class="r"><code>library(adobeanalyticsr)</code></pre>
 <p>The Adobe Analytics API v2.0 has two ways to authenticate and <code>adobeanalyticsr</code> supports both. Make sure to check out the <code>aw_auth()</code> function (<code>?aw_auth</code>) for more information on which is the best for you. In this case I’m using the JWT authentication. This simply means I’ve downloaded the service account JSON file and the private.key file from my project in the developer.adobe.io console and referenced the file path in the <code>.Renviron</code> using the two variables, <code>AW_AUTH_FILE</code> and <code>AW_PRIVATE_KEY</code>.</p>
 <pre class="r"><code># Authenticate
 aw_auth(&#39;jwt&#39;)</code></pre>
-<pre><code>## Successfully authenticated with JWT: access token valid until 2022-03-03 04:02:52</code></pre>
-<p>Next, we will need to define the report suite that we are going to be using as the validation for our new segment. While segments can be used in multiple report suites across your Adobe Analytics account, it is important to use the appropriate base report suite for validation purposes. <em>(Note: You do have to have access to this report suite via your authentication.)</em></p>
+<pre><code>## Successfully authenticated with JWT: access token valid until 2022-03-03 10:47:05</code></pre>
+<p>Next, I will need to define the report suite that I am going to be using as the validation for our new segment. While segments can be used in multiple report suites across your Adobe Analytics account, it is important to use the appropriate base report suite for validation purposes. <em>(Note: You do have to have access to this report suite via your authentication.)</em></p>
 <pre class="r"><code>rsid &lt;- &#39;ageo1xxpnwsdi2020prod&#39;</code></pre>
 <p>Building segments in Adobe Analytics consists of 2 main elements Rules and Containers. Grasping these 2 basic concepts will go a long way in the ability to integrate segment building into your analysis workflow.</p>
 <div id="define-the-rules" class="section level2">
@@ -93,7 +93,7 @@ aw_auth(&#39;jwt&#39;)</code></pre>
 ##     &quot;name&quot;: &quot;variables/page&quot;
 ##   }
 ## }</code></pre>
-<p>In this example we want to add another rule to help define the scope of our segment. The next rule limits the visits to be on January 25, 2022.</p>
+<p>In this example I want to add another rule to help define the limitation of our segment. The next rule limits the visits to be on January 25, 2022.</p>
 <pre class="r"><code>rule2 &lt;- seg_rule(dimension = &#39;daterangeday&#39;,
                   verb = &#39;eq&#39;,
                   object = &#39;2022-01-25&#39;)</code></pre>
@@ -102,13 +102,13 @@ aw_auth(&#39;jwt&#39;)</code></pre>
                   verb = &#39;eq&#39;,
                   object = 2163986270)</code></pre>
 <blockquote>
-<p><strong>Note:</strong> There are some quirks to the API that we are still trying to figure out. One of these is represented in this example. While the UI is clearly a list of mobile device types such as “Mobile Phone”, the API is actually needing a number. That is why we are using the numeric “eq” verb with a dimension. I only include this example to point out the fact that this process of building segments using code is valuable but there is a learning curve. Most of the time you will not have any problems at all but there are some that may require you to do a bit of research to get it right using the API.</p>
+<p><strong>Note:</strong> There are some quirks to the API that I am still trying to figure out. One of these is represented in this example. While the UI is clearly a list of mobile device types such as “Mobile Phone”, the API is actually needing a number. That is why I am using the numeric “eq” verb with a dimension. I only include this example to point out the fact that this process of building segments using code is valuable but there is a learning curve. Most of the time you will not have any problems at all but there are some circumstances that may require you to do a bit of research to get it right using the API.</p>
 </blockquote>
 </div>
 </div>
 <div id="create-the-container" class="section level2">
 <h2>Create the Container</h2>
-<p>Every segment has at least one container. Adding an additional container to the main container is only needed if you are using a different “conjunction” between then. Here we are creating a “visit” context container using “rule1” and “rule2” and using the conjunction “and”. This will result in a segment that includes visits where both rules are <strong>true</strong>.</p>
+<p>Every segment has at least one container. Adding an additional container to the main container is only needed if you are using a different “conjunction” between then. Here I am creating a “visit” context container using “rule1” and “rule2” and using the conjunction “and”. This will result in a segment that includes visits where both rules are <strong>true</strong>.</p>
 <pre class="r"><code>container1 &lt;- seg_con(context = &#39;visits&#39;,
                       conjunction = &#39;and&#39;,
                       rules = list(rule1, rule2))</code></pre>
@@ -116,7 +116,7 @@ aw_auth(&#39;jwt&#39;)</code></pre>
 <div id="build-the-segment" class="section level2">
 <h2>Build the Segment</h2>
 <p>Now that we have the rules and containers defined we need to build the segment using the <code>seg_build()</code> function. By default, this will return a JSON string that can then be validated using the <code>seg_val()</code> function but you are able to change the argument “create_seg” to TRUE and it will create the segment in the UI and return the segment id which can then be used in your other API calls.</p>
-<p>In the following example the segment name is “Home Page visits” and the description is “All visits that include a page named ‘Home’”. We are using the “containers” argument because we have at least one container to be included in our segment. If we were just using rules then we would use the “rules” argument.</p>
+<p>In the following example the segment name is “Home Page visits” and the description is “All visits that include a page named ‘Home’”. I am using the “containers” argument because we have at least one container to be included in our segment. If we were just using rules then we would use the “rules” argument.</p>
 <pre class="r"><code>built &lt;- seg_build(name = &quot;Home Page visits&quot;,
                    description = &quot;All visits that include a page named &#39;Home&#39;&quot;,
                    containers = list(container1, rule3),
