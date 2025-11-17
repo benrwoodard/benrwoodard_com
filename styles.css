@@ -1,0 +1,94 @@
+/* ============================================================
+   BLOG POST HEADER — MATCH OLD HUGO LAYOUT
+   ============================================================ */
+
+.post-header-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Left column (text) */
+.post-header-text {
+  flex: 1 1 60%;
+}
+
+/* Right column (image) */
+.post-header-img-wrap {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post-header-img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Title */
+.post-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  color: #333;
+}
+
+/* Author + date row */
+.post-byline {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Tags container under byline */
+.post-tags {
+  margin-bottom: 1.5rem;
+}
+
+.post-category {
+  background: #f2f2f2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  display: inline-block;
+}
+
+/* Divider under header */
+.post-divider {
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+  margin: 1.5rem auto 2rem auto;
+  max-width: 1200px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .post-header-wrap {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .post-header-img-wrap {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .post-header-img {
+    max-width: 70%;
+  }
+}

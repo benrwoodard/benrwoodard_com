@@ -1,0 +1,21 @@
+---
+title: "A simple blog about analytics and R"
+subtitle: "I'm a data scientist where I use R to solve problems and answer questions around digital marketing analytics."
+
+page-layout: full
+class: homepage
+
+# This turns the title into a banner and uses your image
+title-block-banner: images/bringcoffee.png
+title-block-banner-color: body-bg   # text color (optional; tweak if needed)
+
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+
+---
+

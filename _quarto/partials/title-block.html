@@ -1,0 +1,42 @@
+<div class="post-header-wrap">
+
+  <div class="post-header-text">
+          <!-- Title -->
+      $if(title)$
+        <h2 class="post-title">$title$</h2>
+      $endif$
+    <!-- Byline: author + date -->
+    <div class="post-byline">
+
+      $if(author)$
+        <span class="post-author">
+          $for(author)$$author$$sep$, $endfor$
+        </span>
+      $endif$
+      $if(date)$
+        <span class="post-date">$date$</span>
+      $endif$
+    </div>
+
+    <!-- Categories / tags BELOW title + byline -->
+    $if(categories)$
+    <div class="post-tags">
+      $for(categories)$
+        <span class="post-category">$categories$</span>
+      $endfor$
+    </div>
+    $endif$
+
+
+  </div>
+
+  <!-- Image on the right -->
+  $if(image)$
+  <div class="post-header-img-wrap">
+    <img src="$image$" class="post-header-img" />
+  </div>
+  $endif$
+
+</div>
+
+<hr class="post-divider">
