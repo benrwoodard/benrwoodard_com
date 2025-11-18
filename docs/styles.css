@@ -1,0 +1,221 @@
+/* ============================================================
+   HOMEPAGE HERO LAYOUT (fix: align image right)
+   ============================================================ */
+
+.homepage-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  /* ensures full width inside Quarto's title-block wrapper */
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.homepage-hero-text {
+  flex: 1;
+  max-width: 40rem;
+}
+
+.homepage-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.homepage-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
+}
+
+/* Image column */
+.homepage-hero-img-wrap {
+  flex-shrink: 0; /* don't let it shrink */
+  max-width: 350px;
+}
+
+.homepage-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Give the space below hero a bit of separation */
+.homepage-divider {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* ============================================================
+   HOMEPAGE SHOULD BE FULL-WIDTH — stretch hero
+   ============================================================ */
+
+/* 2. Force homepage main content to full width */
+body.homepage .content {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 1.5rem !important;
+}
+
+/* 3. Make title-block span entire width */
+body.homepage #title-block-header,
+body.homepage .quarto-title-block {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 4. Fix hero alignment inside Quarto wrapper */
+body.homepage #title-block-header .quarto-title-block > * {
+  width: 100%;
+}
+
+/* 5. Center the hero horizontally */
+body.homepage .homepage-hero {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* Optional: tighten up whitespace */
+body.homepage #title-block-header {
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+/* ============================================================
+   HOMEPAGE: ALIGN TITLE WITH MAIN CONTENT
+   ============================================================ */
+
+body.homepage #title-block-header {
+  max-width: 1200px;            /* match your site width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+body.homepage #title-block-header .quarto-title-block {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.homepage #title-block-header {
+  display: none;
+}
+
+/* ============================================================
+   BLOG POST HEADER — MATCH OLD HUGO LAYOUT
+   ============================================================ */
+
+.post-header-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Left column (text) */
+.post-header-text {
+  flex: 1 1 60%;
+}
+
+/* Right column (image) */
+.post-header-img-wrap {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.post-header-img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Title */
+.post-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  color: #333;
+}
+
+/* Author + date row */
+.post-byline {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Tags container under byline */
+.post-tags {
+  margin-bottom: 1.5rem;
+}
+
+.post-category {
+  background: #f2f2f2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  display: inline-block;
+}
+
+/* Divider under header */
+.post-divider {
+  border: none;
+  border-bottom: 1px solid #e2e2e2;
+  margin: 1.5rem auto 2rem auto;
+  max-width: 1200px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .post-header-wrap {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .post-header-img-wrap {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .post-header-img {
+    max-width: 70%;
+  }
+}
+
+.post-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/*hide about content image*/
+.about-contents .post-header-img-wrap img {
+  display: none;
+}
