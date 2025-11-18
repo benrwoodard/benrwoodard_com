@@ -1,0 +1,128 @@
+---
+title: "Basic Linear Regression Model Example"
+description: |
+  The workhorse of all data science work is the basic linear regression model. It has the capability to change the direction of a business like a rudder on a boat but like a rudder, it is often overlooked by most practicioners until other more 'advanced' tactics are tried.
+categories: [r, bayesian, marketing]
+author: Ben Woodard
+date: 2025-11-16
+image: "/images/hill_function_example.png"
+---
+
+Here is an example of a basic bayesian linear regression model in R and stan.
+
+Simulating the data is pretty straight forward.  
+
+```{r}
+set.seed(123)
+N <- 100
+x <- rnorm(N, 0, 1)
+
+alpha_true <- 2.5
+beta_true  <- 0.8
+sigma_true <- 1.0
+
+y <- alpha_true + beta_true * x + rnorm(N, 0, sigma_true)
+
+df <- data.frame(x, y)
+head(df)
+```
+
+Now that we have the data we want to create a linear regression model that shows the results of 
+```{r}
+lm_fit <- lm(y ~ x, data = df)
+summary(lm_fit)
+
+
+```
+
+Key parts of summary(lm_fit):
+
+* Estimate: point estimates of intercept and slope
+* Std. Error: estimated standard error of each coefficient
+* t value, Pr(>|t|): classical hypothesis test for each coefficient
+* Residual standard error: estimate of σ
+* Multiple R-squared: variance explained
+
+```{r}
+confint(lm_fit)
+```
+
+Interpretation (frequentist):
+
+If we repeated this estimation procedure infinitely many times,
+95% of the constructed intervals would contain the true parameter.
+
+(Contrast: in Bayesian, you’d say “there’s a 95% probability the parameter lies in this interval, given data + priors.”)
+
+## Basic Diagnostic Plots
+```{r}
+par(mfrow = c(2, 2))
+plot(lm_fit)
+par(mfrow = c(1, 1))
+```
+
+You get:
+
+* Residuals vs Fitted (linearity, homoskedasticity)
+* Normal Q-Q (normality of residuals)
+* Scale-Location
+* Residuals vs Leverage (influence)
+
+## Predictions with confidence & prediction intervals
+ 
+```{r}
+new <- data.frame(x = seq(-2, 2, length.out = 30))
+
+# Confidence interval for the *mean* response
+pred_conf <- predict(lm_fit, newdata = new, interval = "confidence", level = 0.95)
+
+# Prediction interval for a *new* observation
+pred_pred <- predict(lm_fit, newdata = new, interval = "prediction", level = 0.95)
+
+head(pred_conf)
+head(pred_pred)
+```
+
+* "confidence" = uncertainty about E[y | x]
+* "prediction" = uncertainty about a new y at that x (includes residual noise, so wider)
+ 
+```{r}
+library(ggplot2)
+
+pred_df <- cbind(new, as.data.frame(pred_conf))
+names(pred_df) <- c("x", "fit", "lwr", "upr")
+
+# ggplot(df, aes(x, y)) +
+#   geom_point(alpha = 0.7) +
+#   geom_line(data = pred_df, aes(x, fit)) +
+#   geom_ribbon(
+#     data = pred_df,
+#     aes(x = x, ymin = lwr, ymax = upr),
+#     alpha = 0.2
+#   ) +
+#   labs(
+#     title = "Frequentist Linear Regression (lm)",
+#     subtitle = "Fitted line with 95% confidence band for mean response"
+#   )
+
+```
+
+
+7. Quick contrast with your Bayesian version
+Using the same simulated data:
+
+* Frequentist (lm):
+  * Coefficients: point estimates + SE
+  * 95% CIs: coverage interpretation over repeated samples
+  * p-values: H₀ tests (β = 0, etc.)
+
+* Bayesian (stan_glm):
+  * Coefficients: full posterior distributions
+  * 95% intervals: “credible intervals” (probability statements given model + priors)
+  * No p-values; you might instead look at Pr(β > 0) or posterior density.
+
+
+
+
+
+
