@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,33 +168,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
-<div class="post-header-wrap">
+<!-- ============================================================
+     CUSTOM TITLE BLOCK
+     - Homepage: hero banner
+     - Posts: normal header
+   ============================================================ -->
 
-  <div class="post-header-text">
-          <!-- Title -->
+
+  <!-- =========================
+       DEFAULT POST HEADER
+       ========================= -->
+  <div class="post-header-wrap">
+
+    <div class="post-header-text">
+
+      <!-- Title -->
               <h2 class="post-title anchored">Bayesian Power Analysis in R</h2>
-          <!-- Byline: author + date -->
-    <div class="post-byline">
+           
+      <!-- Byline -->
+      <div class="post-byline">
+                  <span class="post-author">
+            Ben Woodard
+          </span>
+        
+                  <span class="post-date">November 16, 2025</span>
+              </div>
 
-              <span class="post-author">
-          Ben Woodard
-        </span>
-                    <span class="post-date">November 16, 2025</span>
-          </div>
+      <!-- Categories -->
+            <div class="post-tags">
+                  <span class="post-category">r</span>
+                  <span class="post-category">bayesian</span>
+                  <span class="post-category">experimentation</span>
+                  <span class="post-category">marketing</span>
+              </div>
+      
+    </div>
 
-    <!-- Categories / tags BELOW title + byline -->
+    <!-- Post image -->
+        <div class="post-header-img-wrap">
+      <img src="../../images/bayes_power_analysis.png" class="post-header-img">
+    </div>
     
-
   </div>
 
-  <!-- Image on the right -->
-    <div class="post-header-img-wrap">
-    <img src="../../images/bayes_power_analysis.png" class="post-header-img">
-  </div>
-  
-</div>
-
-<hr class="post-divider">
+  <hr class="post-divider">
+           <p class="post-description"></p><p>How can you tell if the two groups are different, I mean different enough to make a decision?</p><p></p>
+      
 
 
 <section id="setup" class="level2">

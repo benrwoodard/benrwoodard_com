@@ -20,7 +20,11 @@ knitr::opts_chunk$set(echo = TRUE,
                       eval = FALSE)
 ```
 
-**Warning: Measuring ITP impact is a classic example of attempting to measure a "moving target". The example below uses segment definitions that were effective at showing the impact of ITP on traffic as of late 2021. This is for demonstration purposes only.**
+<div class="alert alert-dismissible alert-info">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>Heads up!</strong>  Measuring ITP impact is a classic example of attempting to measure a "moving target". The example below uses segment definitions that were effective at showing the impact of ITP on traffic as of late 2021. This is for demonstration purposes only.
+</div>
+
 
 
 ```{r}

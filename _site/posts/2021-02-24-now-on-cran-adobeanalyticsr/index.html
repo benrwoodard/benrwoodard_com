@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -167,33 +167,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
-<div class="post-header-wrap">
+<!-- ============================================================
+     CUSTOM TITLE BLOCK
+     - Homepage: hero banner
+     - Posts: normal header
+   ============================================================ -->
 
-  <div class="post-header-text">
-          <!-- Title -->
+
+  <!-- =========================
+       DEFAULT POST HEADER
+       ========================= -->
+  <div class="post-header-wrap">
+
+    <div class="post-header-text">
+
+      <!-- Title -->
               <h2 class="post-title anchored">Now On CRAN adobeanalyticsr</h2>
-          <!-- Byline: author + date -->
-    <div class="post-byline">
+           
+      <!-- Byline -->
+      <div class="post-byline">
+                  <span class="post-author">
+            Ben R Woodard
+          </span>
+        
+                  <span class="post-date">March 1, 2021</span>
+              </div>
 
-              <span class="post-author">
-          Ben R Woodard
-        </span>
-                    <span class="post-date">March 1, 2021</span>
-          </div>
+      <!-- Categories -->
+            <div class="post-tags">
+                  <span class="post-category">R</span>
+              </div>
+      
+    </div>
 
-    <!-- Categories / tags BELOW title + byline -->
-        <div class="post-tags">
-              <span class="post-category">R</span>
-          </div>
+    <!-- Post image -->
     
-
   </div>
 
-  <!-- Image on the right -->
-  
-</div>
-
-<hr class="post-divider">
+  <hr class="post-divider">
+   
 
 
 <p>I’m super excited to announce that adobeanaltyicsr v0.1.5 is now available on CRAN! adobeanalyticsr is an R client for the new ‘Adobe Analytics’ API 2.0 and had a lot of great features that I believe will help data analysts do their jobs better.</p>

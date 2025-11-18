@@ -20,7 +20,7 @@ website:
   search: true
 format:
   html:
-    theme: cosmo
+    theme: flatly
     css: styles.css
     template-partials:
       - "_quarto/partials/title-block.html"

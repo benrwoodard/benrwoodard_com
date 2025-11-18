@@ -1,4 +1,0 @@
----
-author: Ben R Woodard
----
-

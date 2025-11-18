@@ -1,13 +1,13 @@
 ---
 title: "A simple blog about analytics and R"
-subtitle: "I'm a data scientist where I use R to solve problems and answer questions around digital marketing analytics."
-
-page-layout: full
-class: homepage
-
-# This turns the title into a banner and uses your image
+subtitle: "I'm a data scientist/data analyst who uses the hypothesis framework to solve business problems and answer key questions in marketing analytics."
+is-homepage: true
+title-block: true
 title-block-banner: images/bringcoffee.png
-title-block-banner-color: body-bg   # text color (optional; tweak if needed)
+
+format:
+  html:
+    body-classes: homepage
 
 listing:
   contents: posts
@@ -16,6 +16,4 @@ listing:
   categories: true
   sort-ui: false
   filter-ui: false
-
 ---
-

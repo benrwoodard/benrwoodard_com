@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ben R Woodard">
-<meta name="dcterms.date" content="2021-01-24">
+<meta name="author" content="Ben Woodard">
+<meta name="dcterms.date" content="2025-11-16">
+<meta name="description" content="The first dollar spent in a marketing effort is always the highest ROI and it diminishes it’s retrun from there and gets worse depending on the channel and season. This shape is beautifully made by the Hill Function.">
 
-<title>How to make a deck of cards in R – Ben R Woodard’s Blog</title>
+<title>Fitting a Hill Function in R – Ben R Woodard’s Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -182,209 +212,252 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="post-header-text">
 
       <!-- Title -->
-              <h2 class="post-title anchored">How to make a deck of cards in R</h2>
+              <h2 class="post-title anchored">Fitting a Hill Function in R</h2>
            
       <!-- Byline -->
       <div class="post-byline">
                   <span class="post-author">
-            Ben R Woodard
+            Ben Woodard
           </span>
         
-                  <span class="post-date">January 24, 2021</span>
+                  <span class="post-date">November 16, 2025</span>
               </div>
 
       <!-- Categories -->
             <div class="post-tags">
-                  <span class="post-category">R</span>
+                  <span class="post-category">r</span>
+                  <span class="post-category">bayesian</span>
+                  <span class="post-category">marketing</span>
               </div>
       
     </div>
 
     <!-- Post image -->
         <div class="post-header-img-wrap">
-      <img src="deckofcards.png" class="post-header-img">
+      <img src="../../images/hill_function_example.png" class="post-header-img">
     </div>
     
   </div>
 
   <hr class="post-divider">
-   
+           <p class="post-description"></p><p>The first dollar spent in a marketing effort is always the highest ROI and it diminishes it’s retrun from there and gets worse depending on the channel and season. This shape is beautifully made by the Hill Function.</p><p></p>
+      
 
 
-<p>Just for the fun of it, I wanted to see how to create a complete deck of playing cards in the least amount of steps possible. Obviously, I could have just imported a premade dataset based on scraping a webpage or a csv file that someone created already but what fun would that be? <strong>So here we go!</strong></p>
-<p><strong>Goal:</strong> We need to create a deck of cards that includes 4 different suits of 13 different values, and 13 different faces.</p>
-<ol type="1">
-<li>Make the suits in order by naming the four suits and listing them 13 times so that all 3 lists are the same length.</li>
-</ol>
+<section id="the-hill-function-generative-form" class="level2">
+<h2 class="anchored" data-anchor-id="the-hill-function-generative-form">1. The Hill Function (Generative Form)</h2>
+<p>A typical Hill function:</p>
+<p><span class="math display">\[
+y = \alpha \cdot \frac{x^n}{k^n + x^n}
+\]</span></p>
+<ul>
+<li>α — Maximum height (how tall the curve gets)<br>
+</li>
+<li>k — Midpoint (where it bends)<br>
+</li>
+<li>n — Hill coefficient (curvature / steepness)</li>
+</ul>
+<p>Inside an MMM, the Hill function becomes the functional form for the “response curve” for each marketing channel. It looks something like this:</p>
+<p><code>sales ~ normal( sum(mu_j) + seasonality + promos + trend, sigma )</code></p>
+<p>Let’s work through an example of what that would look like.</p>
+</section>
+<section id="simulate-some-data-before-modeling-simulate-the-model-mcelreath" class="level2">
+<h2 class="anchored" data-anchor-id="simulate-some-data-before-modeling-simulate-the-model-mcelreath">2. Simulate Some Data (“Before modeling, simulate the model” — McElreath)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>suits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'spades'</span>, <span class="st">'clubs'</span>, <span class="st">'diamonds'</span>, <span class="st">'hearts'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>suit <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">map</span>(suits, rep, <span class="dv">13</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(suit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "spades" "spades" "spades" "spades" "spades" "spades"</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2025</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># True parameters</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>alpha_true <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>k_true     <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n_true     <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Predictor</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">30</span>, <span class="at">length.out =</span> <span class="fl">1e2</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Hill function</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>hill <span class="ot">&lt;-</span> <span class="cf">function</span>(x, alpha, k, n) {</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  alpha <span class="sc">*</span> (x<span class="sc">^</span>n <span class="sc">/</span> (k<span class="sc">^</span>n <span class="sc">+</span> x<span class="sc">^</span>n))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">hill</span>(x, alpha_true, k_true, n_true) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x), <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x, y)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<ol start="2" type="1">
-<li>Make the faces by listing out all 13 and we can duplicate it from there.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>faces <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'king'</span>, <span class="st">'queen'</span>, <span class="st">'jack'</span>, <span class="st">'ten'</span>, <span class="st">'nine'</span>, <span class="st">'eight'</span>, <span class="st">'seven'</span>, <span class="st">'six'</span>, <span class="st">'five'</span>, <span class="st">'four'</span>, <span class="st">'three'</span>, <span class="st">'two'</span>, <span class="st">'ace'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>face <span class="ot">&lt;-</span> <span class="fu">rep</span>(faces, <span class="dv">4</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(face)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "king"  "queen" "jack"  "ten"   "nine"  "eight"</code></pre>
-</div>
-</div>
-<ol start="3" type="1">
-<li>Make the values of the cards by listing out the values and then duplicating that 4xs</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">1</span>, <span class="dv">4</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 13 12 11 10  9  8</code></pre>
-</div>
-</div>
-<ol start="4" type="1">
-<li>Make the deck by combining the 3 different lists.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>deck <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(face, suit, value)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(deck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   face   suit value
-1  king spades    13
-2 queen spades    12
-3  jack spades    11
-4   ten spades    10
-5  nine spades     9
-6 eight spades     8</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(deck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    face   suit value
-47   six hearts     6
-48  five hearts     5
-49  four hearts     4
-50 three hearts     3
-51   two hearts     2
-52   ace hearts     1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>deck <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(suit) <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cards =</span> <span class="fu">n</span>(),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">totalValue =</span> <span class="fu">sum</span>(value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  suit     cards totalValue
-  &lt;chr&gt;    &lt;int&gt;      &lt;int&gt;
-1 clubs       13         91
-2 diamonds    13         91
-3 hearts      13         91
-4 spades      13         91</code></pre>
-</div>
-</div>
-<section id="now-we-need-to-create-the-deal-function" class="level2">
-<h2 class="anchored" data-anchor-id="now-we-need-to-create-the-deal-function">Now we need to create the deal function</h2>
-<p>The following is a simple deal function that will deal out 7 random cards (rows) from the deck and not replace those cards back into the deck during the random sample process.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>deal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(deck, x, <span class="at">replace =</span> F)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">deal</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   face     suit value
-1   ten   spades    10
-2 queen   spades    12
-3   ten diamonds    10
-4   six diamonds     6
-5 three   spades     3
-6 queen    clubs    12
-7   six   hearts     6</code></pre>
 </div>
 </div>
 </section>
-<section id="lets-play-a-game-of-blackjack" class="level2">
-<h2 class="anchored" data-anchor-id="lets-play-a-game-of-blackjack">Let’s play a game of blackjack</h2>
-<p>Now that we have the deck compiled we can start playing a game. Blackjack will be a great place to start since it is fairly straight forward. The biggest problem we are going to have is dealing cards from a single deck without having it reshuffle using another function call. The remaining items in the deck must be saved as the new deck.</p>
-<p>There is a simple solution to keeping the cards that were drawn from being pulled again. The ‘anti_join()’ function can help us with that.</p>
-<p>We will need to remove the items from the dealers hand and save it as a list item. Then we need to deal out the 2 cards for the player. If the user wants another card then he will need to ask for a new card while supplying the dealer hand along with the user hand. It is important that these rows are not included in the deck when asked.</p>
-<p>Let’s edit the deal function to return all 3 elements if needed.</p>
+<section id="fit-the-hill-model-using-r-brmsbrm" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-hill-model-using-r-brmsbrm">3. Fit the Hill Model Using r <code>brms::brm</code></h2>
+<p>brm handles nonlinear formulas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>deal <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">set =</span> <span class="cn">NULL</span>){</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  hand <span class="ot">&lt;-</span> set<span class="sc">$</span>myhand</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  dealerhand <span class="ot">&lt;-</span> set<span class="sc">$</span>dealerhand</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  myhand <span class="ot">=</span> <span class="fu">list</span>()</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#remove the existing hand from the deck if it is included</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(hand)) {</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    deck <span class="ot">&lt;-</span> deck <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(hand)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#remove the existing dealer's hand from the deck if it is included</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(dealerhand)) {</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    deck <span class="ot">&lt;-</span> deck <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(dealerhand)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#if there is not dealer hand included then we need to get him 2 cards</span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(dealerhand)) {</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    dealerhand <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(deck, <span class="dv">2</span>, <span class="at">replace =</span> F)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#once this is done we need to remove those 2 cards from the deck</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    deck <span class="ot">&lt;-</span> deck <span class="sc">%&gt;%</span> <span class="fu">anti_join</span>(dealerhand)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#the new cards need to be drawn from the deck</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  newhand <span class="ot">&lt;-</span> <span class="fu">sample_n</span>(deck, x, <span class="at">replace =</span> F)</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">#if the hand is not null then </span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(hand)) {</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>          myhand <span class="ot">&lt;-</span> <span class="fu">rbind</span>(hand, newhand) </span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>          myhand <span class="ot">&lt;-</span> newhand</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>          }</span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  hand <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">myhand =</span> myhand, <span class="at">dealerhand =</span> dealerhand)</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(hand)</span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co">#Deal the cards and get your set</span></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>set <span class="ot">&lt;-</span> <span class="fu">deal</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(face, suit, value)`</code></pre>
+<pre><code>Loading required package: Rcpp</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>set<span class="sc">$</span>myhand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   face   suit value
-1 seven hearts     7
-2  five  clubs     5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>set<span class="sc">$</span>dealerhand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  face  suit value
-1  six clubs     6
-2 king clubs    13</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#play on if you feel lucky!</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>set <span class="ot">&lt;-</span> <span class="fu">deal</span>(<span class="dv">1</span>, set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Joining with `by = join_by(face, suit, value)`
-Joining with `by = join_by(face, suit, value)`</code></pre>
+<pre><code>Loading 'brms' package (version 2.22.0). Useful instructions
+can be found by typing help('brms'). A more detailed introduction
+to the package is available through vignette('brms_overview').</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'brms'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    ar</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hill_model <span class="ot">&lt;-</span> <span class="fu">brm</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bf</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    y <span class="sc">~</span> alpha <span class="sc">*</span> x<span class="sc">^</span>n <span class="sc">/</span> (k<span class="sc">^</span>n <span class="sc">+</span> x<span class="sc">^</span>n), <span class="do">##hill function</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="sc">+</span> k <span class="sc">+</span> n <span class="sc">~</span> <span class="dv">1</span>, <span class="do">##model params  the ~ `1 is “Model each nonlinear parameter as its own intercept (no varying effects).”</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nl =</span> <span class="cn">TRUE</span> <span class="co">#switches brms into nonlinear model</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> df,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">gaussian</span>(),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">prior =</span> <span class="fu">c</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">80</span>, <span class="dv">3</span>), <span class="at">nlpar =</span> <span class="st">"alpha"</span>), <span class="co">#max saturation level</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">3</span>, <span class="dv">2</span>), <span class="at">nlpar =</span> <span class="st">"k"</span>), <span class="co">#half-max point - controls where the curve reaches 50% of a</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prior</span>(<span class="fu">normal</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">nlpar =</span> <span class="st">"n"</span>) <span class="co"># hill coefficient (steepness)</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">iter =</span> <span class="dv">2000</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">cores =</span> <span class="dv">4</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Compiling Stan program...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Trying to compile a simple C file</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>List of 2
- $ myhand    :'data.frame': 3 obs. of  3 variables:
-  ..$ face : chr [1:3] "seven" "five" "queen"
-  ..$ suit : chr [1:3] "hearts" "clubs" "diamonds"
-  ..$ value: int [1:3] 7 5 12
- $ dealerhand:'data.frame': 2 obs. of  3 variables:
-  ..$ face : chr [1:2] "six" "king"
-  ..$ suit : chr [1:2] "clubs" "clubs"
-  ..$ value: int [1:2] 6 13</code></pre>
+<pre><code>Running /Library/Frameworks/R.framework/Resources/bin/R CMD SHLIB foo.c
+using C compiler: ‘Apple clang version 17.0.0 (clang-1700.0.13.5)’
+using SDK: ‘MacOSX15.5.sdk’
+clang -arch arm64 -I"/Library/Frameworks/R.framework/Resources/include" -DNDEBUG   -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/Rcpp/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/unsupported"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/BH/include" -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/src/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppParallel/include/"  -I"/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/rstan/include" -DEIGEN_NO_DEBUG  -DBOOST_DISABLE_ASSERTS  -DBOOST_PENDING_INTEGER_LOG2_HPP  -DSTAN_THREADS  -DUSE_STANC3 -DSTRICT_R_HEADERS  -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION  -D_HAS_AUTO_PTR_ETC=0  -include '/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/stan/math/prim/fun/Eigen.hpp'  -D_REENTRANT -DRCPP_PARALLEL_USE_TBB=1   -I/opt/R/arm64/include    -fPIC  -falign-functions=64 -Wall -g -O2  -c foo.c -o foo.o
+In file included from &lt;built-in&gt;:1:
+In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/StanHeaders/include/stan/math/prim/fun/Eigen.hpp:22:
+In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/Eigen/Dense:1:
+In file included from /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/Eigen/Core:19:
+/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library/RcppEigen/include/Eigen/src/Core/util/Macros.h:679:10: fatal error: 'cmath' file not found
+  679 | #include &lt;cmath&gt;
+      |          ^~~~~~~
+1 error generated.
+make: *** [foo.o] Error 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Start sampling</code></pre>
 </div>
 </div>
-<p>Now we have the dealers hand and the players hand. This is just a start but a fun exercise for me and my 11 year old son, Garrett.</p>
+<p>Under the hood the brms translates the formula to stan which looks like:</p>
+<pre><code>mu = alpha * pow(x, n) / (pow(k, n) + pow(x, n));
+y ~ normal(mu, sigma);
+alpha ~ normal(10, 3);
+k ~ normal(3, 2);
+n ~ normal(1, 1);</code></pre>
+</section>
+<section id="review-posterior-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="review-posterior-summaries">4. Review Posterior Summaries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hill_model, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Family: gaussian 
+  Links: mu = identity; sigma = identity 
+Formula: y ~ alpha * x^n/(k^n + x^n) 
+         alpha ~ 1
+         k ~ 1
+         n ~ 1
+   Data: df (Number of observations: 100) 
+  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+         total post-warmup draws = 4000
+
+Regression Coefficients:
+                Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+alpha_Intercept     9.98      0.10     9.80    10.20 1.00     2295     2345
+k_Intercept         2.95      0.10     2.76     3.14 1.00     3127     2228
+n_Intercept         2.01      0.14     1.74     2.28 1.00     2443     2234
+
+Further Distributional Parameters:
+      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+sigma     0.52      0.04     0.45     0.60 1.00     3607     2817
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hill_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(hill_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see α, k, and n close to the true values 10, 3, and 1.</p>
+</section>
+<section id="posterior-predictive-curve" class="level2">
+<h2 class="anchored" data-anchor-id="posterior-predictive-curve">5. Posterior Predictive Curve</h2>
+<p>This mirrors McElreath’s “link” method in Statistical Rethinking:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>new_x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">30</span>, <span class="at">length.out =</span> <span class="dv">100</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> rstantools<span class="sc">::</span><span class="fu">posterior_linpred</span>(hill_model, <span class="at">newdata =</span> new_x, <span class="at">transform =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>pred_mean  <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred, <span class="dv">2</span>, mean)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>pred_lower <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred, <span class="dv">2</span>, quantile, <span class="fl">0.05</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>pred_upper <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred, <span class="dv">2</span>, quantile, <span class="fl">0.95</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> new_x <span class="sc">%&gt;%</span> </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean =</span> pred_mean,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">lower =</span> pred_lower,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">upper =</span> pred_upper)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(x, y), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(x, mean), <span class="at">linewidth =</span> <span class="fl">1.1</span>) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> plot_df, <span class="fu">aes</span>(x, <span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Hill Function Fit using brms"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"y"</span>, <span class="at">x =</span> <span class="st">"x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<p>This is not a GLM; it’s explicitly nonlinear in the parameters.</p>
+<p>Good priors matter: the Hill coefficient n is notoriously unstable without domain knowledge.</p>
+<p>Plot prior predictive before sampling if possible.</p>
+<p>Always check if posterior curves imply sane behavior for small or large x.</p>
+<p>Think of α as “max plausible outcome,” k as “dose at half max,” and n as “bendiness.”</p>
 
 
 </section>

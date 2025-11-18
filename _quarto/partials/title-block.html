@@ -1,42 +1,95 @@
-<div class="post-header-wrap">
+<!-- ============================================================
+     CUSTOM TITLE BLOCK
+     - Homepage: hero banner
+     - Posts: normal header
+   ============================================================ -->
 
-  <div class="post-header-text">
-          <!-- Title -->
-      $if(title)$
-        <h2 class="post-title">$title$</h2>
-      $endif$
-    <!-- Byline: author + date -->
-    <div class="post-byline">
+$if(is-homepage)$
 
-      $if(author)$
-        <span class="post-author">
-          $for(author)$$author$$sep$, $endfor$
-        </span>
-      $endif$
-      $if(date)$
-        <span class="post-date">$date$</span>
+  <!-- =======================
+       HOMEPAGE HERO BLOCK
+       ======================= -->
+  <div class="homepage-hero">
+
+    <div class="homepage-hero-text">
+      
+      <h1 class="homepage-title">$title$</h1>
+       $if(subtitle)$
+        <p class="post-description">$subtitle$</p>
       $endif$
     </div>
 
-    <!-- Categories / tags BELOW title + byline -->
-    $if(categories)$
-    <div class="post-tags">
-      $for(categories)$
-        <span class="post-category">$categories$</span>
-      $endfor$
+    $if(title-block-banner)$
+    <div class="homepage-hero-img-wrap">
+      <img src="$title-block-banner$" class="homepage-hero-img" />
     </div>
     $endif$
 
+  </div>
+
+  <hr class="homepage-divider">
+
+$elif(is-about)$
+  <div class="post-header-wrap">
+
+    <div class="post-header-text">
+
+      <!-- Title -->
+      $if(title)$
+        <h2 class="post-title">$title$</h2>
+      $endif$
+    </div>
+  </div>
+
+$else$
+
+  <!-- =========================
+       DEFAULT POST HEADER
+       ========================= -->
+  <div class="post-header-wrap">
+
+    <div class="post-header-text">
+
+      <!-- Title -->
+      $if(title)$
+        <h2 class="post-title">$title$</h2>
+      $endif$
+     
+      <!-- Byline -->
+      <div class="post-byline">
+        $if(author)$
+          <span class="post-author">
+            $for(author)$$author$$sep$, $endfor$
+          </span>
+        $endif$
+
+        $if(date)$
+          <span class="post-date">$date$</span>
+        $endif$
+      </div>
+
+      <!-- Categories -->
+      $if(categories)$
+      <div class="post-tags">
+        $for(categories)$
+          <span class="post-category">$categories$</span>
+        $endfor$
+      </div>
+      $endif$
+
+    </div>
+
+    <!-- Post image -->
+    $if(image)$
+    <div class="post-header-img-wrap">
+      <img src="$image$" class="post-header-img" />
+    </div>
+    $endif$
 
   </div>
 
-  <!-- Image on the right -->
-  $if(image)$
-  <div class="post-header-img-wrap">
-    <img src="$image$" class="post-header-img" />
-  </div>
-  $endif$
-
-</div>
-
-<hr class="post-divider">
+  <hr class="post-divider">
+   $if(description)$
+        <p class="post-description">$description$</p>
+      $endif$
+$endif$

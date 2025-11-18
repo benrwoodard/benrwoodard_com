@@ -3,6 +3,7 @@ title: "Bayesian Power Analysis in R"
 description: |
   How can you tell if the two groups are different, I mean different enough to
   make a decision?
+categories: [r, bayesian, experimentation, marketing]
 author: Ben Woodard
 date: 2025-11-16
 image: "/images/bayes_power_analysis.png"

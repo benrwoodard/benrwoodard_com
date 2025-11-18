@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -167,37 +167,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
-<div class="post-header-wrap">
+<!-- ============================================================
+     CUSTOM TITLE BLOCK
+     - Homepage: hero banner
+     - Posts: normal header
+   ============================================================ -->
 
-  <div class="post-header-text">
-          <!-- Title -->
+
+  <!-- =========================
+       DEFAULT POST HEADER
+       ========================= -->
+  <div class="post-header-wrap">
+
+    <div class="post-header-text">
+
+      <!-- Title -->
               <h2 class="post-title anchored">Adobe Analytics API Dynamic ITP Report</h2>
-          <!-- Byline: author + date -->
-    <div class="post-byline">
+           
+      <!-- Byline -->
+      <div class="post-byline">
+                  <span class="post-author">
+            Ben R Woodard
+          </span>
+        
+                  <span class="post-date">January 18, 2022</span>
+              </div>
 
-              <span class="post-author">
-          Ben R Woodard
-        </span>
-                    <span class="post-date">January 18, 2022</span>
-          </div>
+      <!-- Categories -->
+            <div class="post-tags">
+                  <span class="post-category">adobe analytics</span>
+                  <span class="post-category">adobeanalyticsr</span>
+              </div>
+      
+    </div>
 
-    <!-- Categories / tags BELOW title + byline -->
-        <div class="post-tags">
-              <span class="post-category">adobe analytics</span>
-              <span class="post-category">adobeanalyticsr</span>
-          </div>
+    <!-- Post image -->
+        <div class="post-header-img-wrap">
+      <img src="../../images/itpimpactreport.png" class="post-header-img">
+    </div>
     
-
   </div>
 
-  <!-- Image on the right -->
-    <div class="post-header-img-wrap">
-    <img src="../../images/itpimpactreport.png" class="post-header-img">
-  </div>
-  
-</div>
-
-<hr class="post-divider">
+  <hr class="post-divider">
+   
 
 
 <div class="cell">
@@ -207,7 +219,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">message =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Warning: Measuring ITP impact is a classic example of attempting to measure a “moving target”. The example below uses segment definitions that were effective at showing the impact of ITP on traffic as of late 2021. This is for demonstration purposes only.</strong></p>
+<div class="alert alert-dismissible alert-info">
+<p><button type="button" class="btn-close" data-bs-dismiss="alert"></button> <strong>Heads up!</strong> Measuring ITP impact is a classic example of attempting to measure a “moving target”. The example below uses segment definitions that were effective at showing the impact of ITP on traffic as of late 2021. This is for demonstration purposes only.</p>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages('adobeanalyticsr')</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Download packages needed for the report</span></span>
