@@ -4,7 +4,7 @@ description: |
   The first dollar spent in a marketing effort is always the highest ROI and it diminishes it's retrun from there and gets worse depending on the channel and season.  This shape is beautifully made by the Hill Function.
 categories: [r, bayesian, marketing]
 author: Ben Woodard
-date: 2025-11-16
+date: 2025-11-17
 image: "/images/hill_function_example.png"
 ---
 

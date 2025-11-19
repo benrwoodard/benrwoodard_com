@@ -4,7 +4,7 @@ description: |
   The workhorse of all data science work is the basic linear regression model. It has the capability to change the direction of a business like a rudder on a boat but like a rudder, it is often overlooked by most practicioners until other more 'advanced' tactics are tried.
 categories: [r, bayesian, marketing]
 author: Ben Woodard
-date: 2025-11-16
+date: 2025-11-19
 image: "/images/hill_function_example.png"
 ---
 
