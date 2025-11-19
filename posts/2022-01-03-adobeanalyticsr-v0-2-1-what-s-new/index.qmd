@@ -4,7 +4,7 @@ author: Ben R Woodard
 date: '2022-01-03'
 slug: []
 categories: [adobeanalyticsr]
-tags: [adobe analytics, R, adobeanaltyicsr]
+tags: [adobe analytics, r, adobeanaltyicsr]
 images: ['newpackage.jpg']
 authors: [benrwoodard]
 ---
