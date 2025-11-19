@@ -12,7 +12,7 @@ format: html    # ← REQUIRED so partials load correctly
 toc: false
 title-block-banner: false
 ---
-```{r setup}
+```{r setup, echo=F}
 #Setup chunk options
 knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
