@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,6 +11,9 @@
 
 <title>adobeanalyticsr v0.2.1 - What’s New? – Ben R Woodard's Blog</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-6b423f165eeea3787de40cb4f8e821c3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -226,10 +229,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are a few options for setting session options that are going to be really helpful when creating automated workflows. There is a two step process that lets you set a session option for which authentication type you want to use. By using the function <code>aw_auth_with('jwt')</code> you are setting your preferred method as <code>jwt</code> (alternatively <code>aw_auth_with('oauth')</code> sets the preferred method as <code>oauth</code>) and then you can use the function <code>aw_auth()</code> to authenticate, without having to define anything else.</p>
 <p>In addition, you can also just include the value <code>jwt</code> or <code>oauth</code> in the <code>aw_auth()</code> function call like so: <code>aw_auth('jwt')</code>. I usually end up doing that since I’m mainly working on analysis reports and not developing work streams that require more modular development.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aw_auth</span>(<span class="st">'s2s'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aw_auth</span>(<span class="st">'s2s'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">aw_auth_with</span>(<span class="st">'s2s'</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">aw_auth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">aw_auth</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There are several big differences between these two types of authentication, more to come soon on what those are.</p>
 </section>
@@ -253,27 +256,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Get the Segments</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pull up to 1,000 segments from adobe</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>segs <span class="ot">&lt;-</span> <span class="fu">aw_get_segments</span>(<span class="at">limit =</span> <span class="dv">1000</span>, <span class="at">rsids =</span> <span class="fu">Sys.getenv</span>(<span class="st">'AW_REPORTSUITE_ID'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pull up to 1,000 segments from adobe</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>segs <span class="ot">&lt;-</span> <span class="fu">aw_get_segments</span>(<span class="at">limit =</span> <span class="dv">1000</span>, <span class="at">rsids =</span> <span class="fu">Sys.getenv</span>(<span class="st">'AW_REPORTSUITE_ID'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li>Gather the Segment IDs</li>
 </ol>
 <p>This is a very simple example but I’m wanting to compare ‘Mobile’ and ‘Desktop’ visitors to the site. To get the Id for these, I’m simply using the base <code>grepl()</code> function to pull back the Segment IDs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mobilevisitors <span class="ot">&lt;-</span> segs<span class="sc">$</span>id[<span class="fu">grepl</span>(<span class="st">'Mobile Visitors'</span>, segs<span class="sc">$</span>name)]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mobilevisitors <span class="ot">&lt;-</span> segs<span class="sc">$</span>id[<span class="fu">grepl</span>(<span class="st">'Mobile Visitors'</span>, segs<span class="sc">$</span>name)]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>desktopvisitors <span class="ot">&lt;-</span> segs<span class="sc">$</span>id[<span class="fu">grepl</span>(<span class="st">'Desktop Visitors'</span>, segs<span class="sc">$</span>name)]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>segments <span class="ot">&lt;-</span> <span class="fu">c</span>(mobilevisitors, desktopvisitors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>segments <span class="ot">&lt;-</span> <span class="fu">c</span>(mobilevisitors, desktopvisitors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="3" type="1">
 <li>Pull the Segment Table</li>
 </ol>
 <p>Now I can use those 2 segments to pull my data for each segment in a table.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">aw_segment_table</span>(<span class="at">date_range =</span> <span class="fu">c</span>(<span class="st">'2021-11-01'</span>, <span class="st">'2021-12-31'</span>),</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">aw_segment_table</span>(<span class="at">date_range =</span> <span class="fu">c</span>(<span class="st">'2021-11-01'</span>, <span class="st">'2021-12-31'</span>),</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">segmentIds =</span> segments,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'visitors'</span>, <span class="st">'visits'</span>, <span class="st">'pageviews'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'visitors'</span>, <span class="st">'visits'</span>, <span class="st">'pageviews'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>I’ll definitely be writing more on the different ways you can utilize this functions but even the most basic use cases have already proven to be a huge benefit to my analysis workflows.</p>
 <p>If you have any questions or suggestions I would love to hear them. Let me know in the comments or via <a href="https://www.measure.chat/">#MeasureSlack</a>.</p>
@@ -333,13 +336,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -354,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/benrwoodard\.com");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
