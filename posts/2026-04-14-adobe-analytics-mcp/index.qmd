@@ -23,7 +23,9 @@ knitr::opts_chunk$set(
 
 Model Context Protocol (MCP) is an open standard that lets AI assistants like Claude connect directly to external tools and data sources. Instead of copying data into a chat window, MCP gives the AI a live connection to APIs — so you can ask questions in plain English and get real answers back from your actual systems.
 
-For Adobe Analytics, this means I can ask *"show me the top 10 pages by visits broken down by device type for the last 90 days"* and get a live, structured result — no manual API calls, no copy-paste. The MCP server I built on top of `adobeanalyticsr` handles the auth, query construction, and response formatting automatically.
+The foundation of this setup is the [adobeanalyticsr](https://adobeanalyticsr.com) R package — a full-featured client for the Adobe Analytics 2.0 API that handles authentication, query construction, pagination, and response parsing. Every API call in this post ultimately flows through `adobeanalyticsr`. The MCP server is a thin layer on top of it that exposes those capabilities as tools Claude can invoke directly — translating natural language intent into `aw_freeform_table()`, `aw_get_reportsuites()`, `cm_build()`, and the rest of the package's API surface.
+
+For Adobe Analytics, this means I can ask *"show me the top 10 pages by visits broken down by device type for the last 90 days"* and get a live, structured result — no manual API calls, no copy-paste. The MCP server handles the auth, query construction, and response formatting; `adobeanalyticsr` does the heavy lifting underneath.
 
 This post walks through a real session: four natural language prompts, four live Adobe Analytics operations.
 
