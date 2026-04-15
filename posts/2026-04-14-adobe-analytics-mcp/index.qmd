@@ -335,6 +335,6 @@ Four natural language prompts, four live Adobe Analytics operations — no manua
 
 The calculated metric piece is a good example of where the AI adds real value beyond simple query execution: when the documented API approach failed, it reverse-engineered the correct formula structure from an existing object in the system. That's the kind of adaptive problem-solving that makes this more than a query runner.
 
-The full MCP server code is at [benrwoodard/aa_mcp](https://github.com/benrwoodard/aa_mcp_test) and the `adobeanalyticsr` package that powers it is on [CRAN](https://cran.r-project.org/package=adobeanalyticsr).
+The full MCP server code is at [benrwoodard/aa-mcp](https://github.com/benrwoodard/aa-mcp) and the `adobeanalyticsr` package that powers it is on [CRAN](https://cran.r-project.org/package=adobeanalyticsr).
 
 __Disclaimer: This post was 97.2% developed using Claude AI and is a demo using Adobe's sample data. Real-world results will vary based on your implementation, tagging quality, and traffic patterns. Always validate new calculated metrics against known benchmarks before using them for decision-making.__

@@ -635,7 +635,7 @@ Validator Message: Unrecognized function: constant</code></pre>
 <h2 class="anchored" data-anchor-id="wrapping-up">Wrapping Up</h2>
 <p>Four natural language prompts, four live Adobe Analytics operations — no manual API construction, no token juggling, no copy-paste. The MCP server handles the plumbing; Claude handles the translation between intent and API call.</p>
 <p>The calculated metric piece is a good example of where the AI adds real value beyond simple query execution: when the documented API approach failed, it reverse-engineered the correct formula structure from an existing object in the system. That’s the kind of adaptive problem-solving that makes this more than a query runner.</p>
-<p>The full MCP server code is at <a href="https://github.com/benrwoodard/aa_mcp_test">benrwoodard/aa_mcp</a> and the <code>adobeanalyticsr</code> package that powers it is on <a href="https://cran.r-project.org/package=adobeanalyticsr">CRAN</a>.</p>
+<p>The full MCP server code is at <a href="https://github.com/benrwoodard/aa-mcp">benrwoodard/aa-mcp</a> and the <code>adobeanalyticsr</code> package that powers it is on <a href="https://cran.r-project.org/package=adobeanalyticsr">CRAN</a>.</p>
 <p><strong>Disclaimer: This post was 97.2% developed using Claude AI and is a demo using Adobe’s sample data. Real-world results will vary based on your implementation, tagging quality, and traffic patterns. Always validate new calculated metrics against known benchmarks before using them for decision-making.</strong></p>
 
 
